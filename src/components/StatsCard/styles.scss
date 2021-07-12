@@ -1,0 +1,43 @@
+@import "../../App.scss";
+
+.stats-card {
+  border-radius: 20px;
+  padding: 20px 26px;
+
+  &.peach {
+    background-color: $peach;
+  }
+
+  &.light-blue {
+    background-color: $lightBlue;
+  }
+
+  &.light-pink {
+    background-color: $lightPink;
+  }
+
+  &.light-purple {
+    background-color: $lightPurple;
+  }
+
+  .stats-icon-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .stats-value {
+    display: flex;
+    flex-direction: column;
+
+    p {
+      font-size: 14px;
+      margin-bottom: 5px;
+      font-family: $fontLato;
+    }
+
+    h2 {
+      font-family: $fontMontserrat;
+      font-size: 24px;
+    }
+  }
+}
