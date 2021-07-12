@@ -1,0 +1,26 @@
+@import "../../App.scss";
+
+.btn {
+  border-radius: 10px;
+  outline: none;
+  padding: 10px 36px;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: $fontMontserrat;
+  &.wide {
+    width: 100%;
+  }
+  &.primary {
+    border: none;
+    background-color: $primary;
+    color: $white;
+    &:hover {
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25);
+    }
+  }
+  &.danger {
+    background-color: transparent;
+    border: 1px solid $danger;
+    color: $danger;
+  }
+}
