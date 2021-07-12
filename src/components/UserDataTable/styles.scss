@@ -1,0 +1,32 @@
+@import "../../App.scss";
+
+.user-data-row {
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &.odd {
+    background-color: $lightGrey;
+  }
+  &.even {
+    background-color: $bgGrey;
+  }
+  p {
+    font-size: 14px;
+  }
+  img {
+    margin-right: 20px;
+  }
+}
+
+.data-col {
+  display: flex;
+  justify-content: flex-start;
+  width: 15%;
+  &.email {
+    width: 30%;
+    max-width: 30%;
+  }
+}

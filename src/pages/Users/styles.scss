@@ -4,6 +4,7 @@
   border-radius: 20px;
   padding: 50px;
   background-color: $white;
+  overflow: auto;
 
   .table-options {
     display: flex;
@@ -17,6 +18,19 @@
   }
 
   .table-container {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+  }
+
+  .pagination-controls {
+    display: flex;
+    justify-content: flex-end;
+
+    .ctrl-btn {
+      cursor: pointer;
+      border: 1px solid #eaeaea;
+      border-radius: 10px;
+      padding: 9px;
+      margin-right: 5px;
+    }
   }
 }
