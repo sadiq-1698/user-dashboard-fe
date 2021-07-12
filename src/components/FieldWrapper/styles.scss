@@ -1,6 +1,9 @@
+@import "../../App.scss";
+
 .field-wrapper {
   margin-bottom: 20px;
-  p {
+  .label {
     margin-bottom: 10px;
+    font-family: $fontLato;
   }
 }

@@ -1,0 +1,22 @@
+@import "../../App.scss";
+
+.user-records-container {
+  border-radius: 20px;
+  padding: 50px;
+  background-color: $white;
+
+  .table-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    p {
+      font-weight: bold;
+      font-size: 18px;
+    }
+  }
+
+  .table-container {
+    margin-bottom: 30px;
+  }
+}

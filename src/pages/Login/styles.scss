@@ -15,6 +15,7 @@
   background-color: $primary;
   color: white;
   font-weight: bold;
+  font-size: 36px;
 }
 
 .login-right {
@@ -34,15 +35,20 @@
       margin-bottom: 5px;
     }
 
+    .sign-in-text {
+      font-family: $fontLato;
+    }
+
     .form-container {
       padding: 30px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       background-color: $white;
       border-radius: 20px;
     }
 
     .account-exists-text {
       text-align: center;
+      font-family: $fontLato;
     }
   }
 }

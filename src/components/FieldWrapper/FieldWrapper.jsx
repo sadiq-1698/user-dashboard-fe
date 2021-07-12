@@ -4,7 +4,7 @@ import "./styles.scss";
 const FieldWrapper = ({ label, children }) => {
   return (
     <div className="field-wrapper">
-      <p>{label}</p>
+      <p className="label">{label}</p>
       {children}
     </div>
   );

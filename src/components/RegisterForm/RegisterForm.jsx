@@ -6,11 +6,13 @@ import "./styles.scss";
 const RegisterForm = () => {
   return (
     <div>
-      <div style={{ display: "flex" }}>
-        <FieldWrapper label="Email address">
-          <InputField />
-        </FieldWrapper>
-        <FieldWrapper label="Password">
+      <div className="name-fields">
+        <div className="fname-field">
+          <FieldWrapper label="First name">
+            <InputField />
+          </FieldWrapper>
+        </div>
+        <FieldWrapper label="Last name">
           <InputField />
         </FieldWrapper>
       </div>
@@ -24,7 +26,7 @@ const RegisterForm = () => {
         <InputField />
       </FieldWrapper>
       <p className="forgot-pswd-text">
-        I agree the&nbsp;
+        <input type="checkbox" className="terms-check" />I agree the&nbsp;
         <a href="/">terms and conditions</a>
       </p>
       <Button wide>Sign In</Button>

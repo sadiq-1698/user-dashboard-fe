@@ -20,3 +20,8 @@ $fontMontserrat: "Montserrat", sans-serif;
 body {
   font-family: $fontMontserrat;
 }
+
+a {
+  text-decoration: none;
+  color: $link;
+}
