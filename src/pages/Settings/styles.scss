@@ -1,0 +1,103 @@
+@import "../../App.scss";
+
+.settings-layout {
+  display: flex;
+
+  .left {
+    flex: 1;
+    margin-right: 40px;
+  }
+
+  .right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .settings-box {
+    padding: 30px 40px;
+    margin-bottom: 40px;
+    border-radius: 20px;
+    background-color: $white;
+
+    h4 {
+      margin-bottom: 30px;
+      &.danger {
+        color: $danger;
+      }
+    }
+
+    .save-btn {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .profile-box-layout {
+      display: flex;
+      .left-prof {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-right: 30px;
+
+        .change-btn {
+          margin: 0 auto;
+        }
+      }
+
+      .right-prof {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .prof-img {
+        height: 100px;
+        width: 100px;
+        margin-bottom: 15px;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+
+      .change-btn {
+        cursor: pointer;
+        background-color: $white;
+        padding: 4px 10px;
+        border: 1px solid #858585;
+        outline: none;
+        border-radius: 5px;
+      }
+    }
+  }
+}
+
+.two-step-verify {
+  display: flex;
+  justify-content: space-between;
+  .enable-toggle {
+    width: 45px;
+    height: 21px;
+    padding: 0 4px;
+    border-radius: 34px;
+    display: flex;
+    align-items: center;
+    background-color: $darkGrey;
+    cursor: pointer;
+
+    .toggle-ball {
+      height: 17px;
+      width: 17px;
+      border-radius: 50%;
+      background-color: white;
+      transform: translateX(0px);
+      transition: 0.2s all ease-in-out;
+    }
+
+    &.enabled {
+      background-color: $lightGreen;
+
+      .toggle-ball {
+        transform: translateX(20px);
+      }
+    }
+  }
+}

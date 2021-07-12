@@ -3,10 +3,12 @@ import { useLocation } from "react-router-dom";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Topbar from "../../components/Topbar/Topbar";
 
+import Users from "../Users/Users";
+import Settings from "../Settings/Settings";
+
 import { USER_SCREENS } from "../../globals/constants";
 
 import "./styles.scss";
-import Users from "../Users/Users";
 
 const Dashboard = () => {
   const routeLocation = useLocation();
@@ -22,6 +24,7 @@ const Dashboard = () => {
       <div className="content">
         <Topbar screen={getPageName()} />
         {getPageName() === "Users" && <Users />}
+        {getPageName() === "Settings" && <Settings />}
       </div>
     </div>
   );
