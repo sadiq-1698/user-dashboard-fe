@@ -6,6 +6,7 @@ const Sidebar = ({ screens, currentScreen }) => {
       <div className="sidebar-content">
         <div className="top">
           <h1 className="app-name">Dash.</h1>
+
           {screens.map(({ page, path }, i) => {
             return (
               <a key={page} href={path}>
@@ -20,6 +21,7 @@ const Sidebar = ({ screens, currentScreen }) => {
             );
           })}
         </div>
+
         <div className="bottom">
           <a href="/" className="help">
             <p>Help</p>
