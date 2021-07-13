@@ -1,3 +1,5 @@
+@import "../../App.scss";
+
 .stats-card-container {
   display: flex;
   flex-wrap: wrap;
@@ -8,5 +10,39 @@
   }
   .stats-card:last-child {
     margin-right: 0;
+  }
+}
+
+.top-products-box {
+  padding: 30px 40px;
+  background-color: $white;
+  border-radius: 20px;
+  margin-bottom: 40px;
+
+  .top-products-box-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+
+    .right {
+      display: flex;
+      color: $secondary;
+    }
+
+    p {
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+    }
+
+    .chevron-down {
+      font-size: 14px;
+      transform: rotate(90deg);
+    }
+  }
+
+  .top-products-box-body {
+    display: flex;
   }
 }
