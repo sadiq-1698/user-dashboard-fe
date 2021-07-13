@@ -21,7 +21,7 @@ const Sidebar = ({ screens, currentScreen }) => {
           })}
         </div>
         <div className="bottom">
-          <a href="/">
+          <a href="/" className="help">
             <p>Help</p>
           </a>
           <a href="/">
