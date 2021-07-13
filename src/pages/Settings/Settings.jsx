@@ -5,6 +5,7 @@ import InputField from "../../components/InputField/InputField";
 import Button from "../../components/Button/Button";
 
 import "./styles.scss";
+import CircleProfileAvatar from "../../components/CircleProfileAvatar/CircleProfileAvatar";
 
 const Settings = () => {
   return (
@@ -27,14 +28,10 @@ const ProfileBox = ({ header }) => {
       <h4>{header}</h4>
       <div className="profile-box-layout">
         <div className="left-prof">
-          <div className="prof-img">
-            <img
-              src="https://images.unsplash.com/photo-1617885578851-d77b28ab005e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2132&q=80"
-              alt="profile"
-              width="100%"
-              height="100%"
-            />
-          </div>
+          <CircleProfileAvatar
+            img="https://images.unsplash.com/photo-1617885578851-d77b28ab005e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2132&q=80"
+            width="100px"
+          />
           <button className="change-btn">Change</button>
         </div>
 

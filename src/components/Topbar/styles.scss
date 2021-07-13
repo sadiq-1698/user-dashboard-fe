@@ -1,9 +1,19 @@
+@import "../../App.scss";
+
 .topbar {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
-  .profile-section {
+  .topbar-profile-section {
     display: flex;
     align-items: center;
+
+    .topbar-search {
+      margin-right: 30px;
+    }
+
+    .topbar-notify-icon {
+      margin-right: 20px;
+    }
   }
 }

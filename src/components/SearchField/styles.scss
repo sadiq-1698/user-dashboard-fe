@@ -1,0 +1,26 @@
+@import "../../App.scss";
+
+.search-field {
+  padding: 6px 15px;
+  border-radius: 10px;
+  background-color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &.bgGrey {
+    background-color: $bgGrey;
+  }
+
+  input {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-family: $fontLato;
+    background: transparent;
+  }
+
+  ::-webkit-input-placeholder {
+    color: $lightGrey;
+  }
+}

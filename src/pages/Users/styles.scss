@@ -11,9 +11,34 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
-    p {
+
+    p.table-header {
       font-weight: bold;
       font-size: 18px;
+    }
+
+    .table-options-right {
+      display: flex;
+      align-items: center;
+
+      button.table-options-filter {
+        margin: 0 20px;
+        display: flex;
+        align-items: center;
+        border: none;
+        outline: none;
+        border: 1px solid $lightGrey;
+        border-radius: 10px;
+        padding: 7px;
+        background: $white;
+        font-size: 14px;
+        font-family: $fontLato;
+        cursor: pointer;
+
+        img {
+          margin-right: 5px;
+        }
+      }
     }
   }
 

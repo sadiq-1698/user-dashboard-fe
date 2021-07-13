@@ -3,8 +3,10 @@ import UserDataTable from "../../components/UserDataTable/UserDataTable";
 import Button from "../../components/Button/Button.jsx";
 
 import json_data from "../../data/user-data.json";
+import FilterIcon from "../../static/images/filter.svg";
 
 import "./styles.scss";
+import SearchField from "../../components/SearchField/SearchField";
 
 const Users = () => {
   const [data, setData] = useState([]);
@@ -44,10 +46,20 @@ const Users = () => {
   return (
     <div className="user-records-container">
       <div className="table-options">
-        <p>User Records</p>
-        <div className="right">
-          <input onChange={handleChange} />
-          <button>Filter</button>
+        <p className="table-header">User Records</p>
+
+        <div className="table-options-right">
+          <SearchField
+            text="Search in table.."
+            color="bgGrey"
+            onChange={handleChange}
+          />
+
+          <button className="table-options-filter">
+            <img src={FilterIcon} alt="filter" width="12px" height="10px" />
+            <p>Filter</p>
+          </button>
+
           <Button>+ Add</Button>
         </div>
       </div>
@@ -64,6 +76,7 @@ const Users = () => {
         >
           &lt;
         </button>
+
         <button
           className="ctrl-btn next"
           onClick={() => setIndex(i => i + 10)}
