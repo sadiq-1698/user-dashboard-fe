@@ -32,6 +32,7 @@ const ProfileBox = ({ header }) => {
             img="https://images.unsplash.com/photo-1617885578851-d77b28ab005e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2132&q=80"
             width="100px"
           />
+
           <button className="change-btn">Change</button>
         </div>
 
@@ -42,19 +43,24 @@ const ProfileBox = ({ header }) => {
                 <InputField />
               </FieldWrapper>
             </div>
+
             <FieldWrapper label="Last name">
               <InputField />
             </FieldWrapper>
           </div>
+
           <FieldWrapper label="Date of birth">
             <InputField />
           </FieldWrapper>
+
           <FieldWrapper label="Phone number">
             <InputField />
           </FieldWrapper>
+
           <FieldWrapper label="Address">
             <InputField />
           </FieldWrapper>
+
           <div className="save-btn">
             <Button>Save</Button>
           </div>
