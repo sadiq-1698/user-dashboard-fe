@@ -19,14 +19,3 @@
     align-items: center;
   }
 }
-
-.stats-card-container {
-  display: flex;
-  .stats-card {
-    flex: 1;
-    margin-right: 35px;
-  }
-  .stats-card:last-child {
-    margin-right: 0;
-  }
-}

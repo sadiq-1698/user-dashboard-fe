@@ -52,3 +52,18 @@ export const STATS_CARD = [
     icon: UsersIcon
   }
 ];
+
+export const SCHEDULES = [
+  {
+    name: "Meeting with suppliers from Kuta Bali",
+    time: "14.00-15.00",
+    place: "at Sunset Road, Kuta, Bali",
+    tileColor: "purple"
+  },
+  {
+    name: "Check operation at Giga Factory 1",
+    time: "18.00-20.00",
+    place: "at Central Jakarta",
+    tileColor: "light-green"
+  }
+];
