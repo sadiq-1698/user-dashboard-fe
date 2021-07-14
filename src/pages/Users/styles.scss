@@ -52,10 +52,14 @@
 
     .ctrl-btn {
       cursor: pointer;
-      border: 1px solid #eaeaea;
+      border: 1px solid $darkGrey;
       border-radius: 10px;
       padding: 9px;
       margin-right: 5px;
+
+      &.active {
+        border: 1px solid $secondary;
+      }
     }
   }
 }

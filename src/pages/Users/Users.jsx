@@ -1,47 +1,37 @@
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo } from "react";
+
 import UserDataTable from "../../components/UserDataTable/UserDataTable";
 import Button from "../../components/Button/Button.jsx";
+import SearchField from "../../components/SearchField/SearchField";
 
 import json_data from "../../data/user-data.json";
 import FilterIcon from "../../static/images/filter.svg";
 
+import { generateButtons } from "./helper";
 import "./styles.scss";
-import SearchField from "../../components/SearchField/SearchField";
 
 const Users = () => {
   const [data, setData] = useState([]);
-  const [displayData, setDisplayData] = useState([]);
-  const [index, setIndex] = useState(10);
+  const [pageIndex, setPageIndex] = useState(10);
+  const [searchUser, setSearchUser] = useState("");
+  const [paginationButtons, setPaginationButtons] = useState([]);
 
   const fullData = useMemo(() => json_data, []);
 
-  const updateDisplayData = useCallback(
-    idx => {
-      let slicedData = fullData.slice(idx - 10, idx);
-      setDisplayData([...slicedData]);
-    },
-    [fullData]
-  );
-
   const handleChange = e => {
+    setPageIndex(10);
     let value = e.target.value.trim();
-    console.log(value);
-    // let searchResultArray = fullData.filter(element => {
-    //   let matchesFirstName = element.first_name.includes(value);
-    //   let matchesSecondName = element.last_name.includes(value);
-    //   let matchesEmail = element.email.includes(value);
-    //   return matchesFirstName || matchesSecondName || matchesEmail;
-    // });
-    // setData([...searchResultArray]);
-    // setIndex(10);
-    // let updatedDisplayData = data.splice(0, 10);
-    // setDisplayData([...updatedDisplayData]);
+    setSearchUser(value);
   };
 
   useEffect(() => {
     setData(fullData);
-    updateDisplayData(index);
-  }, [fullData, index, updateDisplayData]);
+  }, [fullData]);
+
+  useEffect(() => {
+    let buttonArray = generateButtons(data, pageIndex);
+    setPaginationButtons([...buttonArray]);
+  }, [data, pageIndex]);
 
   return (
     <div className="user-records-container">
@@ -65,26 +55,44 @@ const Users = () => {
       </div>
 
       <div className="table-container">
-        <UserDataTable userData={displayData} />
+        <UserDataTable
+          userData={fullData}
+          pageIndex={pageIndex}
+          searchUser={searchUser}
+          setData={setData}
+        />
       </div>
 
       <div className="pagination-controls">
         <button
           className="ctrl-btn prev"
-          onClick={() => setIndex(i => i - 10)}
-          disabled={index === 10}
+          onClick={() => setPageIndex(i => i - 10)}
+          disabled={pageIndex <= 10}
         >
           &lt;
         </button>
 
+        {paginationButtons.map(val => {
+          return (
+            <button
+              className={`ctrl-btn ${val * 10 === pageIndex ? "active" : ""}`}
+              onClick={() => setPageIndex(val * 10)}
+              key={val}
+            >
+              {val}
+            </button>
+          );
+        })}
+
         <button
           className="ctrl-btn next"
-          onClick={() => setIndex(i => i + 10)}
-          disabled={index === data.length}
+          onClick={() => setPageIndex(i => i + 10)}
+          disabled={pageIndex >= data.length}
         >
           &gt;
         </button>
       </div>
+      {data.length}
     </div>
   );
 };
