@@ -44,6 +44,10 @@
       margin-bottom: 15px;
       background-color: $white;
       border-radius: 20px;
+
+      &.loading {
+        pointer-events: none;
+      }
     }
 
     .account-exists-text {
