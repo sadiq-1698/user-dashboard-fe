@@ -92,7 +92,6 @@ const Users = () => {
           &gt;
         </button>
       </div>
-      {data.length}
     </div>
   );
 };
