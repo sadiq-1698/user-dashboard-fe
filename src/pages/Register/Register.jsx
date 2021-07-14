@@ -6,6 +6,11 @@ import { RegisterFormValidation, RegisterationInitialValues } from "./helper";
 
 const Register = () => {
   const handleRegisterSubmit = (values, actions) => {
+    Object.keys(values).map(
+      k =>
+        (values[k] =
+          typeof values[k] == "string" ? values[k].trim() : values[k])
+    );
     console.log(values);
     actions.setSubmitting(false);
   };

@@ -11,8 +11,29 @@
   font-size: 16px;
 }
 
-.icon-container {
-  height: 15px;
-  width: 15px;
-  background-color: red;
+.input-suffix-icon {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  position: relative;
+
+  input {
+    font-size: 16px;
+    border-radius: 10px;
+    padding: 10px 15px;
+    flex: 1;
+    border: none;
+    outline: none;
+    background: $darkGrey;
+    font-family: $fontLato;
+  }
+
+  .icon-container {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    position: absolute;
+    right: 15px;
+  }
 }

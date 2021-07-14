@@ -39,14 +39,14 @@ const RegisterForm = ({ formProps }) => {
       </FieldWrapper>
 
       <FieldWrapper label="Password">
-        <Field as={InputField} name="password" type="password" />
+        <Field as={InputField} name="password" type="password" iconSuffix />
         {touched.password && errors.password && (
           <FieldError>{errors.password}</FieldError>
         )}
       </FieldWrapper>
 
       <FieldWrapper label="Confirm Password">
-        <Field as={InputField} name="confirm" type="password" />
+        <Field as={InputField} name="confirm" type="password" iconSuffix />
         {touched.confirm && errors.confirm && (
           <FieldError>{errors.confirm}</FieldError>
         )}

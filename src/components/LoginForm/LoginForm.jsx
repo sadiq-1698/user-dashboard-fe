@@ -21,7 +21,7 @@ const LoginForm = ({ formProps }) => {
       </FieldWrapper>
 
       <FieldWrapper label="Password">
-        <Field as={InputField} name="password" type="password" />
+        <Field as={InputField} name="password" type="password" iconSuffix />
         {touched.password && errors.password && (
           <FieldError>{errors.password}</FieldError>
         )}

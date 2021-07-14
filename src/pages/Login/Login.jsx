@@ -9,6 +9,11 @@ import "./styles.scss";
 
 const Login = () => {
   const handleLoginSubmit = (values, actions) => {
+    Object.keys(values).map(
+      k =>
+        (values[k] =
+          typeof values[k] == "string" ? values[k].trim() : values[k])
+    );
     console.log(values);
     actions.setSubmitting(false);
   };
