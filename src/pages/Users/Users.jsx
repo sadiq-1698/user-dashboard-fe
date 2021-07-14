@@ -18,7 +18,7 @@ const Users = () => {
 
   const fullData = useMemo(() => json_data, []);
 
-  const handleChange = e => {
+  const handleUserSearch = e => {
     setPageIndex(10);
     let value = e.target.value.trim();
     setSearchUser(value);
@@ -38,20 +38,7 @@ const Users = () => {
       <div className="table-options">
         <p className="table-header">User Records</p>
 
-        <div className="table-options-right">
-          <SearchField
-            text="Search in table.."
-            color="bgGrey"
-            onChange={handleChange}
-          />
-
-          <button className="table-options-filter">
-            <img src={FilterIcon} alt="filter" width="12px" height="10px" />
-            <p>Filter</p>
-          </button>
-
-          <Button>+ Add</Button>
-        </div>
+        <TableOptions handleSearch={handleUserSearch} />
       </div>
 
       <div className="table-container">
@@ -63,35 +50,65 @@ const Users = () => {
         />
       </div>
 
-      <div className="pagination-controls">
-        <button
-          className="ctrl-btn prev"
-          onClick={() => setPageIndex(i => i - 10)}
-          disabled={pageIndex <= 10}
-        >
-          &lt;
-        </button>
+      <PaginationControls
+        data={data}
+        index={pageIndex}
+        paginationButtons={paginationButtons}
+        setIndex={setPageIndex}
+      />
+    </div>
+  );
+};
 
-        {paginationButtons.map(val => {
-          return (
-            <button
-              className={`ctrl-btn ${val * 10 === pageIndex ? "active" : ""}`}
-              onClick={() => setPageIndex(val * 10)}
-              key={val}
-            >
-              {val}
-            </button>
-          );
-        })}
+const TableOptions = ({ handleSearch }) => {
+  return (
+    <div className="table-options-right">
+      <SearchField
+        text="Search in table.."
+        color="bgGrey"
+        onChange={handleSearch}
+      />
 
-        <button
-          className="ctrl-btn next"
-          onClick={() => setPageIndex(i => i + 10)}
-          disabled={pageIndex >= data.length}
-        >
-          &gt;
-        </button>
-      </div>
+      <button className="table-options-filter">
+        <img src={FilterIcon} alt="filter" width="12px" height="10px" />
+        <p>Filter</p>
+      </button>
+
+      <Button>+ Add</Button>
+    </div>
+  );
+};
+
+const PaginationControls = ({ setIndex, index, paginationButtons, data }) => {
+  return (
+    <div className="pagination-controls">
+      <button
+        className="ctrl-btn prev"
+        onClick={() => setIndex(i => i - 10)}
+        disabled={index <= 10}
+      >
+        &lt;
+      </button>
+
+      {paginationButtons.map(val => {
+        return (
+          <button
+            className={`ctrl-btn ${val * 10 === index ? "active" : ""}`}
+            onClick={() => setPageIndex(val * 10)}
+            key={val}
+          >
+            {val}
+          </button>
+        );
+      })}
+
+      <button
+        className="ctrl-btn next"
+        onClick={() => setIndex(i => i + 10)}
+        disabled={index >= data.length}
+      >
+        &gt;
+      </button>
     </div>
   );
 };
