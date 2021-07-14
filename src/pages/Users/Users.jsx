@@ -13,14 +13,15 @@ import "./styles.scss";
 const Users = () => {
   const [data, setData] = useState([]);
   const [pageIndex, setPageIndex] = useState(10);
-  const [searchUser, setSearchUser] = useState("");
   const [paginationButtons, setPaginationButtons] = useState([]);
+  const [searchUser, setSearchUser] = useState("");
+  const [filter, setFilter] = useState({ admin: true, user: true });
 
   const fullData = useMemo(() => json_data, []);
 
   const handleUserSearch = e => {
     setPageIndex(10);
-    let value = e.target.value.trim();
+    let value = e.target.value.trim().toLowerCase();
     setSearchUser(value);
   };
 
@@ -38,7 +39,11 @@ const Users = () => {
       <div className="table-options">
         <p className="table-header">User Records</p>
 
-        <TableOptions handleSearch={handleUserSearch} />
+        <TableOptions
+          handleSearch={handleUserSearch}
+          setFilter={setFilter}
+          filter={filter}
+        />
       </div>
 
       <div className="table-container">
@@ -46,6 +51,7 @@ const Users = () => {
           userData={fullData}
           pageIndex={pageIndex}
           searchUser={searchUser}
+          roleFilter={filter}
           setData={setData}
         />
       </div>
@@ -60,7 +66,7 @@ const Users = () => {
   );
 };
 
-const TableOptions = ({ handleSearch }) => {
+const TableOptions = ({ handleSearch, setFilter, filter }) => {
   return (
     <div className="table-options-right">
       <SearchField
@@ -69,12 +75,50 @@ const TableOptions = ({ handleSearch }) => {
         onChange={handleSearch}
       />
 
-      <button className="table-options-filter">
+      <UserRoleFilter filter={filter} setFilter={setFilter} />
+
+      <Button>+ Add</Button>
+    </div>
+  );
+};
+
+const UserRoleFilter = ({ filter, setFilter }) => {
+  const [openFilter, setOpenFilter] = useState(false);
+  const toggleFilter = () => setOpenFilter(s => !s);
+
+  return (
+    <div className="table-options-filter">
+      <button
+        onClick={toggleFilter}
+        className={`${openFilter ? "active" : ""}`}
+      >
         <img src={FilterIcon} alt="filter" width="12px" height="10px" />
         <p>Filter</p>
       </button>
 
-      <Button>+ Add</Button>
+      {openFilter && (
+        <div className="filter-container">
+          <label htmlFor="filter-admin">
+            <input
+              type="checkbox"
+              onChange={e => setFilter({ ...filter, admin: e.target.checked })}
+              defaultChecked={filter.admin}
+              id="filter-admin"
+            />
+            Admin
+          </label>
+
+          <label htmlFor="filter-user">
+            <input
+              type="checkbox"
+              onChange={e => setFilter({ ...filter, user: e.target.checked })}
+              defaultChecked={filter.user}
+              id="filter-user"
+            />
+            User
+          </label>
+        </div>
+      )}
     </div>
   );
 };
@@ -94,7 +138,7 @@ const PaginationControls = ({ setIndex, index, paginationButtons, data }) => {
         return (
           <button
             className={`ctrl-btn ${val * 10 === index ? "active" : ""}`}
-            onClick={() => setPageIndex(val * 10)}
+            onClick={() => setIndex(val * 10)}
             key={val}
           >
             {val}

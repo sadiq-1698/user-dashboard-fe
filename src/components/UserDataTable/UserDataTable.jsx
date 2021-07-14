@@ -2,20 +2,29 @@ import { useEffect } from "react";
 import PropTypes from "prop-types";
 
 import CircleProfileAvatar from "../CircleProfileAvatar/CircleProfileAvatar";
-import { searchInArray } from "../../pages/Users/helper";
+import { searchInArray, filterFromArray } from "../../pages/Users/helper";
 import "./styles.scss";
 
-const UserDataTable = ({ userData, pageIndex, searchUser, setData }) => {
+const UserDataTable = ({
+  userData,
+  pageIndex,
+  searchUser,
+  roleFilter,
+  setData
+}) => {
+  const { admin, user } = roleFilter;
+
   useEffect(() => {
-    let updatedData = userData.filter(element =>
-      searchInArray(element, searchUser)
-    );
+    let updatedData = userData
+      .filter(element => filterFromArray(element, admin, user))
+      .filter(element => searchInArray(element, searchUser));
     setData([...updatedData]);
-  }, [searchUser, userData, setData]);
+  }, [searchUser, admin, user, userData, setData]);
 
   return (
     <div>
       {userData
+        .filter(element => filterFromArray(element, admin, user))
         .filter(element => searchInArray(element, searchUser))
         .slice(pageIndex - 10, pageIndex)
         .map((val, i) => {
@@ -54,6 +63,7 @@ UserDataTable.propTypes = {
   userData: PropTypes.arrayOf(PropTypes.object).isRequired,
   pageIndex: PropTypes.number.isRequired,
   searchUser: PropTypes.string.isRequired,
+  roleFilter: PropTypes.object.isRequired,
   setData: PropTypes.func.isRequired
 };
 

@@ -1,7 +1,7 @@
 export const searchInArray = (element, value) => {
-  let matchesFirstName = element.first_name.includes(value);
-  let matchesSecondName = element.last_name.includes(value);
-  let matchesEmail = element.email.includes(value);
+  let matchesFirstName = element.first_name.toLowerCase().includes(value);
+  let matchesSecondName = element.last_name.toLowerCase().includes(value);
+  let matchesEmail = element.email.toLowerCase().includes(value);
   return matchesFirstName || matchesSecondName || matchesEmail;
 };
 
@@ -17,7 +17,7 @@ export const generateButtons = (array, currentPageIndex) => {
   // then min number of buttons will be equal to number of pages
   let start =
     parseInt((pageNumber + 3) / noOfPages) > 0 ? noOfPages - 3 : pageNumber;
-  //edge case => start should begin with at least equal to 1
+  //edge case => start should begin with atleast equal to 1
   start = start < 1 ? 1 : start;
   let end = start + 4 > noOfPages ? noOfPages + 1 : start + 4;
   let result = [];
@@ -26,4 +26,13 @@ export const generateButtons = (array, currentPageIndex) => {
     start++;
   }
   return result;
+};
+
+export const filterFromArray = (element, admin = true, user = true) => {
+  let isAdmin = element.role;
+  let isUser = !element.role;
+  if ((admin && user) || (!admin && !user)) return true;
+  if (isAdmin && admin && !isUser && !user) return true;
+  if (!isAdmin && !admin && isUser && user) return true;
+  return false;
 };

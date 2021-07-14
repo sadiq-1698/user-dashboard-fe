@@ -21,22 +21,54 @@
       display: flex;
       align-items: center;
 
-      button.table-options-filter {
-        margin: 0 20px;
-        display: flex;
-        align-items: center;
-        border: none;
-        outline: none;
-        border: 1px solid $lightGrey;
-        border-radius: 10px;
-        padding: 7px;
-        background: $white;
-        font-size: 14px;
-        font-family: $fontLato;
-        cursor: pointer;
+      .table-options-filter {
+        position: relative;
+
+        button {
+          margin: 0 20px;
+          padding: 7px;
+          outline: none;
+          cursor: pointer;
+          font-size: 14px;
+          font-family: $fontLato;
+          display: flex;
+          align-items: center;
+          border-radius: 10px;
+          background: $white;
+          border: 1px solid $lightGrey;
+
+          &.active {
+            background: $bgGrey;
+          }
+        }
 
         img {
           margin-right: 5px;
+        }
+
+        .filter-container {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          position: absolute;
+          min-width: 100px;
+          top: 40px;
+          right: 5px;
+          background-color: $white;
+          border-radius: 10px;
+          padding: 10px;
+          z-index: 50;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+
+          label {
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            input {
+              margin-right: 10px;
+            }
+          }
         }
       }
     }
