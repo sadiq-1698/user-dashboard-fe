@@ -23,11 +23,18 @@ $bgGrey: #f5f5f5;
 $fontLato: "Lato", sans-serif;
 $fontMontserrat: "Montserrat", sans-serif;
 
+// View ports / Screens
+$a-vp: 320px;
+$b-vp: 480px;
+$c-vp: 600px;
+$d-vp: 768px;
+$e-vp: 992px;
+$f-vp: 1200px;
+
 body {
   font-family: $fontMontserrat;
-}
-
-a {
-  text-decoration: none;
-  color: $link;
+  a {
+    text-decoration: none;
+    color: $link;
+  }
 }

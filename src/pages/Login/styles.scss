@@ -80,3 +80,52 @@
     }
   }
 }
+
+@media (max-width: $d-vp) {
+  .login-page-layout {
+    flex-direction: column;
+
+    .login-left,
+    .login-right {
+      width: 100%;
+    }
+
+    .login-left {
+      padding: 10px;
+      justify-content: flex-start;
+      align-items: center;
+      font-size: 24px;
+    }
+
+    .login-right {
+      flex: 1;
+      .right-content {
+        padding: 20px 0;
+      }
+    }
+  }
+}
+
+@media (max-width: $b-vp) {
+  .login-page-layout {
+    .login-right {
+      padding: 10px;
+      width: 100%;
+    }
+  }
+
+  .social-profile-signin {
+    flex-direction: column;
+
+    button {
+      padding: 15px 0;
+      .btn-content {
+        justify-content: center;
+      }
+    }
+
+    button:first-child {
+      margin-bottom: 10px;
+    }
+  }
+}
