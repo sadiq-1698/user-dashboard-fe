@@ -10,3 +10,16 @@ export const loginUser = async payload => {
   const response = await axios.post(API_ENDPOINTS.user.login, payload);
   return response;
 };
+
+export const changeUserPassword = async (payload, token) => {
+  const response = await axios.patch(
+    API_ENDPOINTS.user.changePassword,
+    payload,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  );
+  return response;
+};

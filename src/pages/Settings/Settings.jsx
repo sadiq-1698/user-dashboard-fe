@@ -1,11 +1,23 @@
 import { useState } from "react";
+import { Formik, Form } from "formik";
 
+import { changeUserPassword } from "../../api/user";
+
+import { trimObjectValues } from "../../globals/helper";
+
+import CircleProfileAvatar from "../../components/CircleProfileAvatar/CircleProfileAvatar";
+import ChangePasswordForm from "../../components/ChangePasswordForm/ChangePasswordForm";
 import FieldWrapper from "../../components/FieldWrapper/FieldWrapper";
 import InputField from "../../components/InputField/InputField";
 import Button from "../../components/Button/Button";
 
+import { useAuth } from "../../contexts/authContext";
+
+import {
+  ChangePasswordInitialValues,
+  ChangePasswordFormValidation
+} from "./helper";
 import "./styles.scss";
-import CircleProfileAvatar from "../../components/CircleProfileAvatar/CircleProfileAvatar";
 
 const Settings = () => {
   return (
@@ -71,21 +83,31 @@ const ProfileBox = ({ header }) => {
 };
 
 const AccountBox = ({ header }) => {
+  const { getUser } = useAuth();
+  const { email: userEmail, authToken } = getUser();
+
+  const handleSubmitChangePassword = async (values, actions) => {
+    trimObjectValues(values);
+    let response = await changeUserPassword(values, authToken);
+    if (response.status === 200) actions.resetForm();
+    actions.setSubmitting(false);
+  };
+
   return (
     <div className="settings-box">
       <h4>{header}</h4>
-      <FieldWrapper label="Email address">
-        <InputField />
-      </FieldWrapper>
-      <FieldWrapper label="Current Password">
-        <InputField />
-      </FieldWrapper>
-      <FieldWrapper label="New Password">
-        <InputField />
-      </FieldWrapper>
-      <div className="save-btn">
-        <Button>Save</Button>
-      </div>
+
+      <Formik
+        initialValues={ChangePasswordInitialValues(userEmail)}
+        validationSchema={ChangePasswordFormValidation}
+        onSubmit={handleSubmitChangePassword}
+      >
+        {formikProps => (
+          <Form>
+            <ChangePasswordForm formProps={formikProps} />
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 };

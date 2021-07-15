@@ -8,7 +8,8 @@ const API_BASE_URL = "http://localhost:3001";
 export const API_ENDPOINTS = {
   user: {
     regsister: `${API_BASE_URL}/user/register`,
-    login: `${API_BASE_URL}/user/login`
+    login: `${API_BASE_URL}/user/login`,
+    changePassword: `${API_BASE_URL}/user/changePassword`
   }
 };
 

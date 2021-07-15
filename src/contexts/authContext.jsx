@@ -22,8 +22,9 @@ export function AuthProvider({ children }) {
   }
 
   function getUser() {
+    let authToken = localStorage.getItem(ACCESS_TOKEN);
     let userInfo = JSON.parse(localStorage.getItem(USER_INFO));
-    return userInfo;
+    return { ...userInfo, authToken };
   }
 
   function logout() {
