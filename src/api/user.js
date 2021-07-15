@@ -30,7 +30,8 @@ export const updateUserProfile = async (payload, accessToken) => {
     payload,
     {
       headers: {
-        Authorization: `Bearer ${accessToken}`
+        Authorization: `Bearer ${accessToken}`,
+        Accept: "application/json"
       }
     }
   );

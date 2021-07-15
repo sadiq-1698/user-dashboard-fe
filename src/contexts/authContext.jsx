@@ -16,19 +16,29 @@ export function AuthProvider({ children }) {
 
   function setUser(userData) {
     let { authToken, userInfo } = userData;
-    localStorage.setItem(ACCESS_TOKEN, authToken);
-    localStorage.setItem(USER_INFO, JSON.stringify(userInfo));
+
+    if (authToken) localStorage.setItem(ACCESS_TOKEN, authToken);
+
+    let existingUserInfo = JSON.parse(localStorage.getItem(USER_INFO));
+
+    if (existingUserInfo) userInfo = { ...existingUserInfo, ...userInfo };
+
+    if (userInfo) localStorage.setItem(USER_INFO, JSON.stringify(userInfo));
+
     setIsLoggedIn(true);
   }
 
   function getUser() {
     let authToken = localStorage.getItem(ACCESS_TOKEN);
+
     let userInfo = JSON.parse(localStorage.getItem(USER_INFO));
+
     return { ...userInfo, authToken };
   }
 
   function logout() {
     localStorage.removeItem(ACCESS_TOKEN);
+    localStorage.removeItem(USER_INFO);
     setIsLoggedIn(false);
   }
 

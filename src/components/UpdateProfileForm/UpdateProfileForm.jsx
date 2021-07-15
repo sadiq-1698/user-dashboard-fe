@@ -1,34 +1,59 @@
+import { Field } from "formik";
+import { useState } from "react";
+
+import { getProfileImage } from "../../globals/helper";
+
 import CircleProfileAvatar from "../CircleProfileAvatar/CircleProfileAvatar";
 import FieldWrapper from "../FieldWrapper/FieldWrapper";
 import InputField from "../InputField/InputField";
+import FieldError from "../FieldError/FieldError";
 import Button from "../Button/Button";
 
 import "./styles.scss";
 
-const UpdateProfileForm = ({ formProps }) => {
-  const { touched, errors, isSubmitting } = formProps;
+const UpdateProfileForm = ({ formProps, getUser }) => {
+  const [previewImg, setPreviewImg] = useState(getProfileImage(getUser));
+
+  const { touched, errors, isSubmitting, setFieldValue } = formProps;
+
+  const handleFileChange = e => {
+    setFieldValue("profilePhoto", e.target.files[0]);
+    setPreviewImg(URL.createObjectURL(e.target.files[0]));
+  };
 
   return (
     <div className="profile-box-layout">
       <div className="left-prof">
-        <CircleProfileAvatar
-          img="https://images.unsplash.com/photo-1617885578851-d77b28ab005e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2132&q=80"
-          width="100px"
-        />
+        <CircleProfileAvatar img={previewImg} width="100px" />
 
-        <button className="change-btn">Change</button>
+        <label htmlFor="file-upload" className="change-btn">
+          Change
+        </label>
+        <input
+          type="file"
+          id="file-upload"
+          name="profilePhoto"
+          accept="image/*"
+          onChange={handleFileChange}
+        />
       </div>
 
       <div className="right-prof">
         <div className="name-fields">
           <div className="fname-field">
-            <FieldWrapper label="First name">
-              <InputField />
+            <FieldWrapper label="First Name">
+              <Field as={InputField} name="firstName" />
+              {touched.firstName && errors.firstName && (
+                <FieldError>{errors.firstName}</FieldError>
+              )}
             </FieldWrapper>
           </div>
 
-          <FieldWrapper label="Last name">
-            <InputField />
+          <FieldWrapper label="Last Name">
+            <Field as={InputField} name="lastName" />
+            {touched.lastName && errors.lastName && (
+              <FieldError>{errors.lastName}</FieldError>
+            )}
           </FieldWrapper>
         </div>
 
@@ -36,16 +61,24 @@ const UpdateProfileForm = ({ formProps }) => {
           <InputField />
         </FieldWrapper>
 
-        <FieldWrapper label="Phone number">
-          <InputField />
+        <FieldWrapper label="Phone Number">
+          <Field as={InputField} name="phone" type="number" />
+          {touched.phone && errors.phone && (
+            <FieldError>{errors.phone}</FieldError>
+          )}
         </FieldWrapper>
 
         <FieldWrapper label="Address">
-          <InputField />
+          <Field as={InputField} name="address" />
+          {touched.address && errors.address && (
+            <FieldError>{errors.address}</FieldError>
+          )}
         </FieldWrapper>
 
         <div className="save-btn">
-          <Button>Save</Button>
+          <Button wide loading={isSubmitting} type="submit">
+            Save
+          </Button>
         </div>
       </div>
     </div>

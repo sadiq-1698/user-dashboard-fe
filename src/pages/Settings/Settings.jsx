@@ -1,32 +1,35 @@
 import { useState } from "react";
 import { Formik, Form } from "formik";
 
-import { changeUserPassword } from "../../api/user";
+import { changeUserPassword, updateUserProfile } from "../../api/user";
 
 import { trimObjectValues } from "../../globals/helper";
 
-import CircleProfileAvatar from "../../components/CircleProfileAvatar/CircleProfileAvatar";
 import ChangePasswordForm from "../../components/ChangePasswordForm/ChangePasswordForm";
-import FieldWrapper from "../../components/FieldWrapper/FieldWrapper";
-import InputField from "../../components/InputField/InputField";
+import UpdateProfileForm from "../../components/UpdateProfileForm/UpdateProfileForm";
+
 import Button from "../../components/Button/Button";
 
 import { useAuth } from "../../contexts/authContext";
 
 import {
   ChangePasswordInitialValues,
-  ChangePasswordFormValidation
+  ChangePasswordFormValidation,
+  UpdateProfileInitialValues,
+  UpdateProfileFormValidation
 } from "./helper";
 import "./styles.scss";
 
 const Settings = () => {
+  const { getUser, setUser } = useAuth();
+
   return (
     <div className="settings-layout">
       <div className="left">
-        <ProfileBox header="Profile" />
+        <ProfileBox header="Profile" getUser={getUser} setUser={setUser} />
       </div>
       <div className="right">
-        <AccountBox header="Account" />
+        <AccountBox header="Account" getUser={getUser} />
         <SecurityBox header="Security" />
         <DangerBox header="Danger Zone" />
       </div>
@@ -34,61 +37,49 @@ const Settings = () => {
   );
 };
 
-const ProfileBox = ({ header }) => {
+const ProfileBox = ({ header, getUser, setUser }) => {
+  const userInfo = getUser();
+
+  const handleSubmitUpdateProfile = async (values, actions) => {
+    let formData = new FormData();
+    Object.entries(values).forEach(([key, value]) => {
+      if (value.toString().trim().length > 0) {
+        formData.append(key, value);
+      }
+    });
+    const response = await updateUserProfile(formData, userInfo.authToken);
+    if (response && response.status === 200) {
+      let { data } = response;
+      setUser(data);
+    }
+    actions.setSubmitting(false);
+  };
+
   return (
     <div className="settings-box">
       <h4>{header}</h4>
-      <div className="profile-box-layout">
-        <div className="left-prof">
-          <CircleProfileAvatar
-            img="https://images.unsplash.com/photo-1617885578851-d77b28ab005e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2132&q=80"
-            width="100px"
-          />
 
-          <button className="change-btn">Change</button>
-        </div>
-
-        <div className="right-prof">
-          <div className="name-fields">
-            <div className="fname-field">
-              <FieldWrapper label="First name">
-                <InputField />
-              </FieldWrapper>
-            </div>
-
-            <FieldWrapper label="Last name">
-              <InputField />
-            </FieldWrapper>
-          </div>
-
-          <FieldWrapper label="Date of birth">
-            <InputField />
-          </FieldWrapper>
-
-          <FieldWrapper label="Phone number">
-            <InputField />
-          </FieldWrapper>
-
-          <FieldWrapper label="Address">
-            <InputField />
-          </FieldWrapper>
-
-          <div className="save-btn">
-            <Button>Save</Button>
-          </div>
-        </div>
-      </div>
+      <Formik
+        initialValues={UpdateProfileInitialValues(userInfo)}
+        validationSchema={UpdateProfileFormValidation}
+        onSubmit={handleSubmitUpdateProfile}
+      >
+        {formikProps => (
+          <Form>
+            <UpdateProfileForm formProps={formikProps} getUser={getUser} />
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 };
 
-const AccountBox = ({ header }) => {
-  const { getUser } = useAuth();
-  const { email: userEmail, authToken } = getUser();
+const AccountBox = ({ header, getUser }) => {
+  const userInfo = getUser();
 
   const handleSubmitChangePassword = async (values, actions) => {
     trimObjectValues(values);
-    let response = await changeUserPassword(values, authToken);
+    let response = await changeUserPassword(values, userInfo.authToken);
     if (response.status === 200) actions.resetForm();
     actions.setSubmitting(false);
   };
@@ -98,7 +89,7 @@ const AccountBox = ({ header }) => {
       <h4>{header}</h4>
 
       <Formik
-        initialValues={ChangePasswordInitialValues(userEmail)}
+        initialValues={ChangePasswordInitialValues(userInfo.email)}
         validationSchema={ChangePasswordFormValidation}
         onSubmit={handleSubmitChangePassword}
       >

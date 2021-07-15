@@ -3,7 +3,7 @@ import TransactionsIcon from "../static/images/transactions.svg";
 import LikesIcon from "../static/images/likes.svg";
 import UsersIcon from "../static/images/users.svg";
 
-const API_BASE_URL = "http://localhost:3001";
+export const API_BASE_URL = "http://localhost:3001";
 
 export const API_ENDPOINTS = {
   user: {

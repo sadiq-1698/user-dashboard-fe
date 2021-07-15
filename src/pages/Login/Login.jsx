@@ -17,7 +17,7 @@ import "./styles.scss";
 
 const Login = () => {
   const history = useHistory();
-  const { setUser } = useAuth();
+  const { setUser, logout } = useAuth();
 
   const handleLoginSubmit = async (values, actions) => {
     trimObjectValues(values);
@@ -27,6 +27,7 @@ const Login = () => {
       return;
     }
     if (response && response.status === 200) {
+      logout(); // clear user info from local storage
       let { data } = response;
       setUser(data);
       history.length > 0 ? history.replace("/") : history.push("/");

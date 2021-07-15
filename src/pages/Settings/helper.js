@@ -20,3 +20,23 @@ export const ChangePasswordInitialValues = email => {
     newPassword: ""
   };
 };
+
+export const UpdateProfileFormValidation = Yup.object({
+  firstName: Yup.string().required("Field required"),
+  lastName: Yup.string().required("Field required"),
+  dateOfBirth: Yup.string(),
+  phone: Yup.number(),
+  address: Yup.string(),
+  profilePhoto: Yup.mixed()
+});
+
+export const UpdateProfileInitialValues = userInfo => {
+  return {
+    firstName: userInfo.firstName || "",
+    lastName: userInfo.lastName || "",
+    dateOfBirth: "",
+    phone: userInfo.phone || "",
+    address: userInfo.address || "",
+    profilePhoto: ""
+  };
+};

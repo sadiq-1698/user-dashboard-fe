@@ -26,15 +26,15 @@ const ChangePasswordForm = ({ formProps }) => {
           type="password"
           iconSuffix
         />
-        {touched.password && errors.password && (
-          <FieldError>{errors.password}</FieldError>
+        {touched.currentPassword && errors.currentPassword && (
+          <FieldError>{errors.currentPassword}</FieldError>
         )}
       </FieldWrapper>
 
       <FieldWrapper label="New Password">
         <Field as={InputField} name="newPassword" type="password" iconSuffix />
-        {touched.password && errors.password && (
-          <FieldError>{errors.password}</FieldError>
+        {touched.newPassword && errors.newPassword && (
+          <FieldError>{errors.newPassword}</FieldError>
         )}
       </FieldWrapper>
 
