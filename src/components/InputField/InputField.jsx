@@ -13,7 +13,7 @@ const InputField = ({ iconSuffix, ...props }) => {
       <div className="input-suffix-icon">
         <input {...props} type={show ? "text" : "password"} />
         <button
-          class="icon-container"
+          className="icon-container"
           type="button"
           onClick={() => setShow(s => !s)}
         >
