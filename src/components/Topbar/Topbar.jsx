@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import { useAuth } from "../../contexts/authContext";
 
 import { getProfileImage } from "../../globals/helper";
@@ -10,8 +12,6 @@ import "./styles.scss";
 
 const Topbar = ({ screen }) => {
   const { getUser } = useAuth();
-
-  console.log("Topbar", getUser);
 
   return (
     <div className="topbar">
@@ -34,6 +34,10 @@ const Topbar = ({ screen }) => {
       </div>
     </div>
   );
+};
+
+Topbar.propTypes = {
+  screen: PropTypes.string.isRequired
 };
 
 export default Topbar;

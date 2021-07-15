@@ -1,4 +1,5 @@
 import { Field } from "formik";
+import PropTypes from "prop-types";
 import { useState } from "react";
 
 import { getProfileImage } from "../../globals/helper";
@@ -83,6 +84,11 @@ const UpdateProfileForm = ({ formProps, getUser }) => {
       </div>
     </div>
   );
+};
+
+UpdateProfileForm.propTypes = {
+  formikProps: PropTypes.object.isRequired,
+  getUser: PropTypes.func.isRequired
 };
 
 export default UpdateProfileForm;

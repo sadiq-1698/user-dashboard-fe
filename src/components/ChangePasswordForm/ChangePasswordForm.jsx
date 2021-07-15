@@ -1,4 +1,5 @@
 import { Field } from "formik";
+import PropTypes from "prop-types";
 
 import FieldWrapper from "../FieldWrapper/FieldWrapper";
 import InputField from "../InputField/InputField";
@@ -45,6 +46,10 @@ const ChangePasswordForm = ({ formProps }) => {
       </div>
     </>
   );
+};
+
+ChangePasswordForm.propTypes = {
+  formikProps: PropTypes.object.isRequired
 };
 
 export default ChangePasswordForm;
