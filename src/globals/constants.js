@@ -9,7 +9,8 @@ export const API_ENDPOINTS = {
   user: {
     regsister: `${API_BASE_URL}/user/register`,
     login: `${API_BASE_URL}/user/login`,
-    changePassword: `${API_BASE_URL}/user/changePassword`
+    changePassword: `${API_BASE_URL}/user/changePassword`,
+    updateProfile: `${API_BASE_URL}/user/updateProfile`
   }
 };
 

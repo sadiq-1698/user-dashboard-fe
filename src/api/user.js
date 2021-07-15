@@ -11,13 +11,26 @@ export const loginUser = async payload => {
   return response;
 };
 
-export const changeUserPassword = async (payload, token) => {
+export const changeUserPassword = async (payload, accessToken) => {
   const response = await axios.patch(
     API_ENDPOINTS.user.changePassword,
     payload,
     {
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${accessToken}`
+      }
+    }
+  );
+  return response;
+};
+
+export const updateUserProfile = async (payload, accessToken) => {
+  const response = await axios.patch(
+    API_ENDPOINTS.user.updateProfile,
+    payload,
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`
       }
     }
   );
