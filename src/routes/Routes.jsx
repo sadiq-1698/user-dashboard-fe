@@ -1,11 +1,15 @@
 import React from "react";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
+
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import Dashboard from "../pages/Dashboard/Dashboard";
-// import ProtectedRoute from "./ProtectedRoute";
+import PrivateRoute from "./PrivateRoute";
+import { useAuth } from "../contexts/authContext";
 
 const Routes = () => {
+  const { isLoggedIn } = useAuth();
+
   const dashboardRoutes = [
     "/",
     "/settings",
@@ -20,14 +24,16 @@ const Routes = () => {
         <Route path="/register" exact>
           <Register />
         </Route>
+
         <Route path="/login" exact>
           <Login />
         </Route>
-        <Route path={dashboardRoutes} exact>
-          <Dashboard />
-        </Route>
 
-        {/* <ProtectedRoute path="/" component={TodoContainer} auth={isAuth} /> */}
+        <PrivateRoute
+          path={dashboardRoutes}
+          component={Dashboard}
+          auth={isLoggedIn}
+        />
       </Switch>
     </Router>
   );
