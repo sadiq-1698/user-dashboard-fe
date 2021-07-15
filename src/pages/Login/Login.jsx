@@ -1,21 +1,36 @@
+import { useHistory } from "react-router-dom";
 import { Formik, Form } from "formik";
-import { LoginFormValidation, LoginInitialValues } from "./helper";
 
 import LoginForm from "../../components/LoginForm/LoginForm";
 import GoogleIcon from "../../static/images/google-icon.svg";
 import AppleIcon from "../../static/images/apple-icon.svg";
 
+import { trimObjectValues } from "../../globals/helper";
+
+import { useAuth } from "../../contexts/authContext";
+
+import { loginUser } from "../../api/user";
+
+import { LoginFormValidation, LoginInitialValues } from "./helper";
+
 import "./styles.scss";
 
 const Login = () => {
-  const handleLoginSubmit = (values, actions) => {
-    Object.keys(values).map(
-      k =>
-        (values[k] =
-          typeof values[k] == "string" ? values[k].trim() : values[k])
-    );
-    console.log(values);
-    actions.setSubmitting(false);
+  const history = useHistory();
+  const { setUser } = useAuth();
+
+  const handleLoginSubmit = async (values, actions) => {
+    trimObjectValues(values);
+    let response = await loginUser(values);
+    if (response.status !== 200) {
+      actions.setSubmitting(false);
+      return;
+    }
+    if (response && response.status === 200) {
+      let { data } = response;
+      setUser(data);
+      history.length > 0 ? history.replace("/") : history.push("/");
+    }
   };
 
   return (

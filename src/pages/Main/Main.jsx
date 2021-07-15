@@ -7,23 +7,29 @@ import "./styles.scss";
 const Main = () => {
   return (
     <div>
-      <div className="stats-card-container">
-        {STATS_CARD.map((val, i) => {
-          return (
-            <StatsCard
-              amount={val.amount}
-              color={val.color}
-              icon={val.icon}
-              stat={val.stat}
-              key={val.stat}
-            />
-          );
-        })}
-      </div>
+      <StatsCardContainer />
 
       <TopProductsBox />
 
       <ScheduleBox />
+    </div>
+  );
+};
+
+const StatsCardContainer = () => {
+  return (
+    <div className="stats-card-container">
+      {STATS_CARD.map((val, i) => {
+        return (
+          <StatsCard
+            amount={val.amount}
+            color={val.color}
+            icon={val.icon}
+            stat={val.stat}
+            key={val.stat}
+          />
+        );
+      })}
     </div>
   );
 };

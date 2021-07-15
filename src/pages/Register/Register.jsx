@@ -1,18 +1,26 @@
+import { Formik, Form } from "formik";
+import { useHistory } from "react-router-dom";
+
 import { LeftSection, SocialProfileButtons } from "../Login/Login";
 import RegisterForm from "../../components/RegisterForm/RegisterForm";
-import "../Login/styles.scss";
-import { Formik, Form } from "formik";
+import { registerUser } from "../../api/user";
+import { trimObjectValues } from "../../globals/helper";
+
 import { RegisterFormValidation, RegisterationInitialValues } from "./helper";
 
+import "../Login/styles.scss";
+
 const Register = () => {
-  const handleRegisterSubmit = (values, actions) => {
-    Object.keys(values).map(
-      k =>
-        (values[k] =
-          typeof values[k] == "string" ? values[k].trim() : values[k])
-    );
-    console.log(values);
-    actions.setSubmitting(false);
+  const history = useHistory();
+
+  const handleRegisterSubmit = async (values, actions) => {
+    trimObjectValues(values);
+    let response = await registerUser(values);
+    if (response.status !== 200) {
+      actions.setSubmitting(false);
+      return;
+    }
+    if (response && response.status === 200) history.push("/login");
   };
 
   return (
