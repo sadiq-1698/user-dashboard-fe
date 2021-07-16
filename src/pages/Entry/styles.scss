@@ -1,0 +1,131 @@
+@import "../../App.scss";
+
+.entry-page-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.entry-left {
+  min-height: 100%;
+  max-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35%;
+  background-color: $primary;
+  color: white;
+  font-weight: bold;
+  font-size: 36px;
+}
+
+.entry-right {
+  width: calc(100% - 35%);
+  background-color: $bgGrey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .right-content {
+    width: 385px;
+    max-width: 385px;
+    display: flex;
+    flex-direction: column;
+
+    .sign-in-header {
+      margin-bottom: 5px;
+    }
+
+    .sign-in-text {
+      font-family: $fontLato;
+    }
+
+    .form-container {
+      padding: 30px;
+      margin-bottom: 15px;
+      background-color: $white;
+      border-radius: 20px;
+
+      &.loading {
+        pointer-events: none;
+      }
+    }
+
+    .account-exists-text {
+      text-align: center;
+      font-family: $fontLato;
+    }
+  }
+}
+
+.social-profile-signin {
+  display: flex;
+  justify-content: space-between;
+  margin: 25px 0;
+  button {
+    font-size: 12px;
+    font-family: $fontMontserrat;
+    padding: 7px 9px;
+    background-color: $white;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: $secondary;
+    .btn-content {
+      display: flex;
+      align-items: center;
+      img {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+@media (max-width: $d-vp) {
+  .entry-page-layout {
+    flex-direction: column;
+
+    .entry-left,
+    .entry-right {
+      width: 100%;
+    }
+
+    .entry-left {
+      padding: 10px;
+      justify-content: flex-start;
+      align-items: center;
+      font-size: 24px;
+    }
+
+    .entry-right {
+      flex: 1;
+      .right-content {
+        padding: 20px 0;
+      }
+    }
+  }
+}
+
+@media (max-width: $b-vp) {
+  .entry-page-layout {
+    .entry-right {
+      padding: 10px;
+      width: 100%;
+    }
+  }
+
+  .social-profile-signin {
+    flex-direction: column;
+
+    button {
+      padding: 15px 0;
+      .btn-content {
+        justify-content: center;
+      }
+    }
+
+    button:first-child {
+      margin-bottom: 10px;
+    }
+  }
+}
