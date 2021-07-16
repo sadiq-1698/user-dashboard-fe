@@ -39,6 +39,7 @@ const Settings = () => {
 
 const ProfileBox = ({ header, getUser, setUser }) => {
   const [errMsg, setErrMsg] = useState("");
+  const [success, setSuccess] = useState(false);
   const userInfo = getUser();
 
   const appendValuesToFormData = (values, formData) => {
@@ -59,6 +60,8 @@ const ProfileBox = ({ header, getUser, setUser }) => {
       actions.setSubmitting(false);
       return;
     }
+    setErrMsg(responseData.message);
+    setSuccess(true);
     setUser(responseData.data && responseData.data);
     actions.setSubmitting(false);
   };
@@ -78,13 +81,14 @@ const ProfileBox = ({ header, getUser, setUser }) => {
           </Form>
         )}
       </Formik>
-      {errMsg.length > 0 && <FieldError>{errMsg}</FieldError>}
+      {errMsg.length > 0 && <FieldError success={success}>{errMsg}</FieldError>}
     </div>
   );
 };
 
 const AccountBox = ({ header, getUser }) => {
   const [errMsg, setErrMsg] = useState("");
+  const [success, setSuccess] = useState(false);
   const userInfo = getUser();
 
   const handleSubmitChangePassword = async (values, actions) => {
@@ -96,6 +100,8 @@ const AccountBox = ({ header, getUser }) => {
       actions.setSubmitting(false);
       return;
     }
+    setErrMsg(responseData.message);
+    setSuccess(true);
     actions.resetForm();
     actions.setSubmitting(false);
   };
@@ -115,7 +121,7 @@ const AccountBox = ({ header, getUser }) => {
           </Form>
         )}
       </Formik>
-      {errMsg.length > 0 && <FieldError>{errMsg}</FieldError>}
+      {errMsg.length > 0 && <FieldError success={success}>{errMsg}</FieldError>}
     </div>
   );
 };

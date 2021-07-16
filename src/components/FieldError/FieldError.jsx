@@ -1,7 +1,11 @@
 import "./styles.scss";
 
-const FieldError = ({ children }) => {
-  return <span className="field-error-message">{children}</span>;
+const FieldError = ({ children, success }) => {
+  return (
+    <span className={`field-error-message ${success ? "success" : ""}`}>
+      {children}
+    </span>
+  );
 };
 
 export default FieldError;
