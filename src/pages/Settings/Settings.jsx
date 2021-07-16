@@ -56,6 +56,7 @@ const ProfileBox = ({ header, getUser, setUser }) => {
     const response = await updateUserProfile(formData, userInfo.authToken);
     const responseData = getResponseData(response);
     if (responseData.statusCode !== 200) {
+      setSuccess(false);
       setErrMsg(responseData.message);
       actions.setSubmitting(false);
       return;
@@ -96,6 +97,7 @@ const AccountBox = ({ header, getUser }) => {
     let response = await changeUserPassword(values, userInfo.authToken);
     const responseData = getResponseData(response);
     if (responseData.statusCode !== 200) {
+      setSuccess(false);
       setErrMsg(responseData.message);
       actions.setSubmitting(false);
       return;
