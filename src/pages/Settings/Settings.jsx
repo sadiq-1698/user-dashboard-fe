@@ -63,7 +63,7 @@ const ProfileBox = ({ header, getUser, setUser }) => {
     }
     setErrMsg(responseData.message);
     setSuccess(true);
-    setUser(responseData.data && responseData.data);
+    setUser(responseData.data);
     actions.setSubmitting(false);
   };
 
