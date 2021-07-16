@@ -1,0 +1,35 @@
+@import "../../App.scss";
+
+.dropdown-container {
+  position: absolute;
+  top: 40px;
+  right: 5px;
+  width: 150px;
+  padding: 15px;
+  z-index: 100;
+  background: $white;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+.menu-divider {
+  margin: 5px 0;
+  border-bottom: 1px solid $black;
+}
+
+.dropdown-item {
+  padding: 6px;
+  border-radius: 8px;
+  color: $black;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-item.logout {
+  color: $danger;
+}
+
+.dropdown-item:hover {
+  background-color: $bgGrey;
+}

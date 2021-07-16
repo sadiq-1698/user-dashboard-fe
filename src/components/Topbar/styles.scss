@@ -15,5 +15,21 @@
     .topbar-notify-icon {
       margin-right: 20px;
     }
+
+    .topbar-profile-pic {
+      cursor: pointer;
+      border: none;
+      border: 3px solid transparent;
+      outline: none;
+      background: transparent;
+      border-radius: 50%;
+      position: relative;
+      font-family: $fontMontserrat;
+      transition: 0.1s all ease-in-out;
+
+      &:hover {
+        border: 3px solid $lightGrey;
+      }
+    }
   }
 }

@@ -9,6 +9,7 @@ import FilterIcon from "../../static/images/filter.svg";
 
 import { generateButtons } from "./helper";
 import "./styles.scss";
+import useComponentVisible from "../../hooks/useComponentVisible";
 
 const Users = () => {
   const [data, setData] = useState([]);
@@ -83,20 +84,20 @@ const TableOptions = ({ handleSearch, setFilter, filter }) => {
 };
 
 const UserRoleFilter = ({ filter, setFilter }) => {
-  const [openFilter, setOpenFilter] = useState(false);
-  const toggleFilter = () => setOpenFilter(s => !s);
+  const { ref, isComponentVisible, toggleRef } = useComponentVisible();
 
   return (
     <div className="table-options-filter">
       <button
-        onClick={toggleFilter}
-        className={`${openFilter ? "active" : ""}`}
+        onClick={toggleRef}
+        ref={ref}
+        className={`${isComponentVisible ? "active" : ""}`}
       >
         <img src={FilterIcon} alt="filter" width="12px" height="10px" />
         <p>Filter</p>
       </button>
 
-      {openFilter && (
+      {isComponentVisible && (
         <div className="filter-container">
           <label htmlFor="filter-admin">
             <input
