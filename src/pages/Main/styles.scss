@@ -1,5 +1,9 @@
 @import "../../App.scss";
 
+.products-schedules-wrapper {
+  display: flex;
+}
+
 .stats-card-container {
   display: flex;
   flex-wrap: wrap;
@@ -13,11 +17,24 @@
   }
 }
 
-.top-products-box {
+.chevron-down {
+  font-size: 14px;
+  transform: rotate(90deg);
+}
+
+.dashboard-box {
   padding: 30px 40px;
   background-color: $white;
   border-radius: 20px;
-  margin-bottom: 40px;
+
+  &.activities {
+    margin-bottom: 40px;
+  }
+}
+
+.top-products {
+  margin-right: 40px;
+  flex: 1;
 
   .top-products-box-head {
     display: flex;
@@ -35,14 +52,58 @@
       align-items: center;
       font-size: 12px;
     }
-
-    .chevron-down {
-      font-size: 14px;
-      transform: rotate(90deg);
-    }
   }
 
   .top-products-box-body {
+    display: flex;
+
+    .pie-chart {
+      margin-right: 45px;
+    }
+
+    .pie-stats {
+      .stat {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 20px;
+
+        .data-hightlight-color {
+          border-radius: 50%;
+          margin-right: 10px;
+          height: 11px;
+          width: 11px;
+        }
+
+        .prod-name {
+          margin-bottom: 5px;
+          font-size: 14px;
+          font-family: $fontMontserrat;
+          line-height: 1;
+        }
+
+        .prod-value {
+          font-size: 12px;
+          font-family: $fontLato;
+          color: $secondary;
+        }
+      }
+    }
+  }
+}
+
+.activities-box-head {
+  display: flex;
+  justify-content: space-between;
+
+  .left {
+    .time-span {
+      font-size: 14px;
+      color: $secondary;
+      display: flex;
+    }
+  }
+
+  .right {
     display: flex;
   }
 }

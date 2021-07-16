@@ -1,20 +1,20 @@
 @import "../../App.scss";
 
-.schedule-box {
-  padding: 30px 40px;
-  background-color: $white;
-  border-radius: 20px;
+.dashboard-box {
+  &.schedule {
+    flex: 1;
 
-  .schedule-box-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
+    .schedule-box-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
 
-    .see-all-schedule {
-      font-size: 12px;
-      a {
-        color: $secondary;
+      .see-all-schedule {
+        font-size: 12px;
+        a {
+          color: $secondary;
+        }
       }
     }
   }
