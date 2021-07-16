@@ -49,7 +49,7 @@ const ChangePasswordForm = ({ formProps }) => {
 };
 
 ChangePasswordForm.propTypes = {
-  formikProps: PropTypes.object.isRequired
+  formProps: PropTypes.object.isRequired
 };
 
 export default ChangePasswordForm;

@@ -1,6 +1,6 @@
+import { useState } from "react";
 import { Field } from "formik";
 import PropTypes from "prop-types";
-import { useState } from "react";
 
 import { getProfileImage } from "../../globals/helper";
 
@@ -11,11 +11,12 @@ import FieldError from "../FieldError/FieldError";
 import Button from "../Button/Button";
 
 import "./styles.scss";
+import DatePickerField from "../DatePickerField/DatePickerField";
 
 const UpdateProfileForm = ({ formProps, getUser }) => {
   const [previewImg, setPreviewImg] = useState(getProfileImage(getUser));
 
-  const { touched, errors, isSubmitting, setFieldValue } = formProps;
+  const { touched, errors, isSubmitting, setFieldValue, values } = formProps;
 
   const handleFileChange = e => {
     setFieldValue("profilePhoto", e.target.files[0]);
@@ -59,7 +60,15 @@ const UpdateProfileForm = ({ formProps, getUser }) => {
         </div>
 
         <FieldWrapper label="Date of birth">
-          <InputField />
+          <Field
+            as={DatePickerField}
+            name="dateOfBirth"
+            date={values["dateOfBirth"].toString()}
+            setFieldValue={date => setFieldValue("dateOfBirth", date)}
+          />
+          {touched.dateOfBirth && errors.dateOfBirth && (
+            <FieldError>{errors.dateOfBirth}</FieldError>
+          )}
         </FieldWrapper>
 
         <FieldWrapper label="Phone Number">
@@ -87,7 +96,7 @@ const UpdateProfileForm = ({ formProps, getUser }) => {
 };
 
 UpdateProfileForm.propTypes = {
-  formikProps: PropTypes.object.isRequired,
+  formProps: PropTypes.object.isRequired,
   getUser: PropTypes.func.isRequired
 };
 
