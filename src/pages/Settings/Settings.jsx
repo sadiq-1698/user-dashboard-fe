@@ -3,11 +3,11 @@ import { Formik, Form } from "formik";
 
 import { changeUserPassword, updateUserProfile } from "../../api/user";
 
-import { trimObjectValues } from "../../globals/helper";
+import { trimObjectValues, getResponseData } from "../../globals/helper";
 
 import ChangePasswordForm from "../../components/ChangePasswordForm/ChangePasswordForm";
 import UpdateProfileForm from "../../components/UpdateProfileForm/UpdateProfileForm";
-
+import FieldError from "../../components/FieldError/FieldError";
 import Button from "../../components/Button/Button";
 
 import { useAuth } from "../../contexts/authContext";
@@ -38,20 +38,28 @@ const Settings = () => {
 };
 
 const ProfileBox = ({ header, getUser, setUser }) => {
+  const [errMsg, setErrMsg] = useState("");
   const userInfo = getUser();
 
-  const handleSubmitUpdateProfile = async (values, actions) => {
-    let formData = new FormData();
+  const appendValuesToFormData = (values, formData) => {
     Object.entries(values).forEach(([key, value]) => {
       if (value.toString().trim().length > 0) {
         formData.append(key, value);
       }
     });
+  };
+
+  const handleSubmitUpdateProfile = async (values, actions) => {
+    let formData = new FormData();
+    appendValuesToFormData(values, formData);
     const response = await updateUserProfile(formData, userInfo.authToken);
-    if (response && response.status === 200) {
-      let { data } = response;
-      setUser(data);
+    const responseData = getResponseData(response);
+    if (responseData.statusCode !== 200) {
+      setErrMsg(responseData.message);
+      actions.setSubmitting(false);
+      return;
     }
+    setUser(responseData.data && responseData.data);
     actions.setSubmitting(false);
   };
 
@@ -70,17 +78,25 @@ const ProfileBox = ({ header, getUser, setUser }) => {
           </Form>
         )}
       </Formik>
+      {errMsg.length > 0 && <FieldError>{errMsg}</FieldError>}
     </div>
   );
 };
 
 const AccountBox = ({ header, getUser }) => {
+  const [errMsg, setErrMsg] = useState("");
   const userInfo = getUser();
 
   const handleSubmitChangePassword = async (values, actions) => {
     trimObjectValues(values);
     let response = await changeUserPassword(values, userInfo.authToken);
-    if (response.status === 200) actions.resetForm();
+    const responseData = getResponseData(response);
+    if (responseData.statusCode !== 200) {
+      setErrMsg(responseData.message);
+      actions.setSubmitting(false);
+      return;
+    }
+    actions.resetForm();
     actions.setSubmitting(false);
   };
 
@@ -99,6 +115,7 @@ const AccountBox = ({ header, getUser }) => {
           </Form>
         )}
       </Formik>
+      {errMsg.length > 0 && <FieldError>{errMsg}</FieldError>}
     </div>
   );
 };

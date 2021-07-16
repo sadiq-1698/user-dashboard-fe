@@ -1,26 +1,33 @@
 import { Formik, Form } from "formik";
+import { useState } from "react";
 import { useHistory } from "react-router-dom";
+
+import { registerUser } from "../../api/user";
+
+import { trimObjectValues, getResponseData } from "../../globals/helper";
 
 import { LeftSection, SocialProfileButtons } from "../Login/Login";
 import RegisterForm from "../../components/RegisterForm/RegisterForm";
-import { registerUser } from "../../api/user";
-import { trimObjectValues } from "../../globals/helper";
+import FieldError from "../../components/FieldError/FieldError";
 
 import { RegisterFormValidation, RegisterationInitialValues } from "./helper";
 
 import "../Login/styles.scss";
 
 const Register = () => {
+  const [errorMsg, setErrorMsg] = useState("");
   const history = useHistory();
 
   const handleRegisterSubmit = async (values, actions) => {
     trimObjectValues(values);
     let response = await registerUser(values);
-    if (response.status !== 200) {
+    const responseData = getResponseData(response);
+    if (responseData.statusCode !== 200) {
+      setErrorMsg(responseData.message);
       actions.setSubmitting(false);
       return;
     }
-    if (response && response.status === 200) history.push("/login");
+    history.push("/login");
   };
 
   return (
@@ -44,6 +51,7 @@ const Register = () => {
               <Form>
                 <div className="form-container">
                   <RegisterForm formProps={formikProps} />
+                  {errorMsg.length > 0 && <FieldError>{errorMsg}</FieldError>}
                 </div>
               </Form>
             )}

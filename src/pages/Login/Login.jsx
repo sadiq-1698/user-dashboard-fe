@@ -1,11 +1,12 @@
 import { useHistory } from "react-router-dom";
+import { useState } from "react";
 import { Formik, Form } from "formik";
 
 import LoginForm from "../../components/LoginForm/LoginForm";
 import GoogleIcon from "../../static/images/google-icon.svg";
 import AppleIcon from "../../static/images/apple-icon.svg";
 
-import { trimObjectValues } from "../../globals/helper";
+import { trimObjectValues, getResponseData } from "../../globals/helper";
 
 import { useAuth } from "../../contexts/authContext";
 
@@ -14,24 +15,25 @@ import { loginUser } from "../../api/user";
 import { LoginFormValidation, LoginInitialValues } from "./helper";
 
 import "./styles.scss";
+import FieldError from "../../components/FieldError/FieldError";
 
 const Login = () => {
+  const [errorMsg, setErrorMsg] = useState("");
   const history = useHistory();
   const { setUser, logout } = useAuth();
 
   const handleLoginSubmit = async (values, actions) => {
     trimObjectValues(values);
     let response = await loginUser(values);
-    if (response.status !== 200) {
+    const responseData = getResponseData(response);
+    if (responseData.statusCode !== 200) {
+      setErrorMsg(responseData.message);
       actions.setSubmitting(false);
       return;
     }
-    if (response && response.status === 200) {
-      logout(); // clear user info from local storage
-      let { data } = response;
-      setUser(data);
-      history.length > 0 ? history.replace("/") : history.push("/");
-    }
+    logout();
+    setUser(responseData.data);
+    history.length > 0 ? history.replace("/") : history.push("/");
   };
 
   return (
@@ -55,6 +57,7 @@ const Login = () => {
               <Form>
                 <div className="form-container">
                   <LoginForm formProps={formikProps} />
+                  {errorMsg.length > 0 && <FieldError>{errorMsg}</FieldError>}
                 </div>
               </Form>
             )}
