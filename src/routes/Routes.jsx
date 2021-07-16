@@ -1,10 +1,10 @@
 import React from "react";
 import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 
-import Login from "../pages/Login/Login";
-import Register from "../pages/Register/Register";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import PrivateRoute from "./PrivateRoute";
+import Entry from "../pages/Entry/Entry";
+
 import { useAuth } from "../contexts/authContext";
 
 const Routes = () => {
@@ -18,15 +18,13 @@ const Routes = () => {
     "/schedules"
   ];
 
+  const entryRoutes = ["/register", "/login"];
+
   return (
     <Router>
       <Switch>
-        <Route path="/register" exact>
-          <Register />
-        </Route>
-
-        <Route path="/login" exact>
-          <Login />
+        <Route path={entryRoutes} exact>
+          <Entry />
         </Route>
 
         <PrivateRoute

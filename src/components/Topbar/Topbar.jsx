@@ -15,7 +15,13 @@ import ProfileDropdown from "../ProfileDropdown/ProfileDropdown";
 import "./styles.scss";
 
 const Topbar = ({ screen }) => {
-  const { ref, isComponentVisible, toggleRef } = useComponentVisible();
+  const {
+    triggerRef,
+    childRef,
+    isComponentVisible,
+    toggleChild
+  } = useComponentVisible();
+
   const { getUser } = useAuth();
 
   return (
@@ -33,10 +39,15 @@ const Topbar = ({ screen }) => {
           <img src={NotifyIcon} alt="notification" width="18px" height="20px" />
         </div>
 
-        <button className="topbar-profile-pic" onClick={toggleRef} ref={ref}>
+        <button
+          className="topbar-profile-pic"
+          ref={triggerRef}
+          onClick={toggleChild}
+        >
           <CircleProfileAvatar img={getProfileImage(getUser)} width="30px" />
-          {isComponentVisible && <ProfileDropdown />}
         </button>
+
+        <div ref={childRef}>{isComponentVisible && <ProfileDropdown />}</div>
       </div>
     </div>
   );

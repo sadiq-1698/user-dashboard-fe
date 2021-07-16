@@ -40,6 +40,17 @@ export const USER_SCREENS = [
   }
 ];
 
+export const ENTRY_SCREENS = [
+  {
+    page: "Login",
+    path: "/login"
+  },
+  {
+    page: "Register",
+    path: "/register"
+  }
+];
+
 export const STATS_CARD = [
   {
     stat: "Total Revenues",

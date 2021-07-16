@@ -84,21 +84,25 @@ const TableOptions = ({ handleSearch, setFilter, filter }) => {
 };
 
 const UserRoleFilter = ({ filter, setFilter }) => {
-  const { ref, isComponentVisible, toggleRef } = useComponentVisible();
+  const {
+    triggerRef,
+    childRef,
+    isComponentVisible,
+    toggleChild
+  } = useComponentVisible();
 
   return (
     <div className="table-options-filter">
       <button
-        onClick={toggleRef}
-        ref={ref}
+        onClick={toggleChild}
+        ref={triggerRef}
         className={`${isComponentVisible ? "active" : ""}`}
       >
         <img src={FilterIcon} alt="filter" width="12px" height="10px" />
         <p>Filter</p>
       </button>
-
       {isComponentVisible && (
-        <div className="filter-container">
+        <div className="filter-container" ref={childRef}>
           <label htmlFor="filter-admin">
             <input
               type="checkbox"

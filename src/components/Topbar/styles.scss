@@ -4,6 +4,7 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  position: relative;
   .topbar-profile-section {
     display: flex;
     align-items: center;
@@ -23,7 +24,6 @@
       outline: none;
       background: transparent;
       border-radius: 50%;
-      position: relative;
       font-family: $fontMontserrat;
       transition: 0.1s all ease-in-out;
 

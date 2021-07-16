@@ -1,16 +1,38 @@
 import { useState, useEffect, useRef } from "react";
 
-const useComponentVisible = initialIsVisible => {
+const useComponentVisible = (initialIsVisible = false) => {
   const [isComponentVisible, setIsComponentVisible] = useState(
     initialIsVisible
   );
-  const ref = useRef(null);
+  const triggerRef = useRef(null);
+  const childRef = useRef(null);
 
-  const toggleRef = () => setIsComponentVisible(s => !s);
+  const toggleChild = () => setIsComponentVisible(s => !s);
 
   const handleClickOutside = event => {
-    if (ref.current && !ref.current.contains(event.target)) {
-      setIsComponentVisible(false);
+    let trigger = triggerRef.current;
+    let child = childRef.current;
+
+    let clickedElement = event.target;
+
+    if (trigger) {
+      let triggerClicked = trigger === clickedElement;
+      let triggerContainsClicked = trigger.contains(clickedElement);
+
+      if (isComponentVisible) {
+        if (child) {
+          let childClicked = clickedElement === child;
+          let childContainsClicked = child.contains(clickedElement);
+
+          if (childClicked || childContainsClicked) {
+            return;
+          }
+        }
+
+        if (!triggerClicked && !triggerContainsClicked) {
+          setIsComponentVisible(false);
+        }
+      }
     }
   };
 
@@ -21,7 +43,12 @@ const useComponentVisible = initialIsVisible => {
     };
   });
 
-  return { ref, isComponentVisible, toggleRef };
+  return {
+    triggerRef,
+    childRef,
+    isComponentVisible,
+    toggleChild
+  };
 };
 
 export default useComponentVisible;
