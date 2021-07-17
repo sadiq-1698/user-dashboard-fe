@@ -9,6 +9,8 @@
   .content {
     flex: 1;
     margin-left: 40px;
+    max-width: 100%;
+    overflow-x: auto;
   }
 }
 

@@ -1,6 +1,41 @@
+// import {
+//   LineChart,
+//   XAxis,
+//   YAxis,
+//   CartesianGrid,
+//   Line,
+//   ResponsiveContainer
+// } from "recharts";
+
 import "../styles.scss";
 
 const ActivitiesBox = () => {
+  // const data = [
+  //   {
+  //     name: "Week 1",
+  //     uv: 4000,
+  //     pv: 2400,
+  //     amt: 2400
+  //   },
+  //   {
+  //     name: "Week 2",
+  //     uv: 3000,
+  //     pv: 1398,
+  //     amt: 2210
+  //   },
+  //   {
+  //     name: "Week 3",
+  //     uv: 2000,
+  //     pv: 9800,
+  //     amt: 2290
+  //   },
+  //   {
+  //     name: "Week 4",
+  //     uv: 2780,
+  //     pv: 3908,
+  //     amt: 2000
+  //   }
+  // ];
   return (
     <div className="dashboard-box activities">
       <div className="activities-box-head">
@@ -11,12 +46,40 @@ const ActivitiesBox = () => {
             <div className="chevron-down">&gt;</div>
           </div>
         </div>
+
         <div className="right">
           <p>Guest</p>
           <p>User</p>
         </div>
       </div>
-      <div className="activities-box-body"></div>
+
+      <div className="activities-box-body">
+        {/* <ResponsiveContainer width="100%" aspect={3}>
+          <LineChart width={800} height={300} data={data}>
+            <XAxis dataKey="name" />
+
+            <YAxis />
+
+            <CartesianGrid stroke="#eee" strokeDasharray="0 0" />
+
+            <Line
+              type="monotone"
+              dataKey="uv"
+              stroke="#9BDD7C"
+              dot={false}
+              strokeWidth={2}
+            />
+
+            <Line
+              type="monotone"
+              dataKey="pv"
+              stroke="#E9A0A0"
+              dot={false}
+              strokeWidth={2}
+            />
+          </LineChart>
+        </ResponsiveContainer> */}
+      </div>
     </div>
   );
 };

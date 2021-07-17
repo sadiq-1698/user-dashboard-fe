@@ -94,4 +94,13 @@
       }
     }
   }
+
+  @media (max-width: $f-vp) {
+    .pagination-controls,
+    .table-container,
+    .table-options {
+      width: 680px;
+      padding-right: 20px;
+    }
+  }
 }

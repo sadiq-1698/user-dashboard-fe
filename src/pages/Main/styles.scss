@@ -2,16 +2,39 @@
 
 .products-schedules-wrapper {
   display: flex;
+
+  @media (max-width: $e-vp) {
+    flex-direction: column;
+  }
 }
 
 .stats-card-container {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 40px;
+
+  @media (max-width: $e-vp) {
+    flex-direction: column;
+  }
+
   .stats-card {
     flex: 1;
     margin-right: 35px;
+
+    @media (max-width: $f-vp) {
+      margin-right: 0;
+      &:nth-child(odd) {
+        margin-right: 35px;
+      }
+    }
+
+    @media (max-width: $e-vp) {
+      margin-right: 0;
+      &:nth-child(odd) {
+        margin-right: 0;
+      }
+    }
   }
+
   .stats-card:last-child {
     margin-right: 0;
   }
@@ -29,12 +52,18 @@
 
   &.activities {
     margin-bottom: 40px;
+    overflow-x: scroll;
   }
 }
 
 .top-products {
   margin-right: 40px;
   flex: 1;
+
+  @media (max-width: $e-vp) {
+    margin-right: 0;
+    margin-bottom: 40px;
+  }
 
   .top-products-box-head {
     display: flex;
@@ -52,13 +81,29 @@
       align-items: center;
       font-size: 12px;
     }
+
+    @media (max-width: $b-vp) {
+      flex-direction: column;
+      align-items: flex-start;
+      .right {
+        margin-top: 10px;
+      }
+    }
   }
 
   .top-products-box-body {
     display: flex;
 
+    @media (max-width: $f-vp) {
+      flex-direction: column;
+    }
+
     .pie-chart {
       margin-right: 45px;
+      @media (max-width: $f-vp) {
+        margin: 0;
+        margin-bottom: 20px;
+      }
     }
 
     .pie-stats {
@@ -94,6 +139,7 @@
 .activities-box-head {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
 
   .left {
     .time-span {
@@ -105,5 +151,12 @@
 
   .right {
     display: flex;
+  }
+
+  @media (max-width: $b-vp) {
+    flex-direction: column;
+    .right {
+      margin-top: 10px;
+    }
   }
 }

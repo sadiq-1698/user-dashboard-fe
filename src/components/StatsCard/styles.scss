@@ -1,8 +1,18 @@
 @import "../../App.scss";
 
 .stats-card {
-  border-radius: 20px;
+  min-width: calc(25% - 40px);
+  margin-bottom: 40px;
   padding: 20px 26px;
+  border-radius: 20px;
+
+  @media (max-width: $f-vp) {
+    min-width: calc(50% - 20px);
+  }
+
+  @media (max-width: $e-vp) {
+    min-width: 100%;
+  }
 
   &.peach {
     background-color: $peach;

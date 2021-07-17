@@ -16,6 +16,15 @@
           color: $secondary;
         }
       }
+
+      @media (max-width: $b-vp) {
+        flex-direction: column;
+        align-items: flex-start;
+
+        .see-all-schedule {
+          margin-top: 10px;
+        }
+      }
     }
   }
 }
