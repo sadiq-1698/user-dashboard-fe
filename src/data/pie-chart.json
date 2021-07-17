@@ -1,0 +1,26 @@
+[
+  {
+    "duration": "Jan - Feb 2021",
+    "products": [
+      { "name": "Basic Tees", "value": 55, "color": "#F6DC7D" },
+      { "name": "Custom Short Pants", "value": 31, "color": "#EE8484" },
+      { "name": "Super Hoodies", "value": 14, "color": "#98D89E" }
+    ]
+  },
+  {
+    "duration": "Mar - Apr 2021",
+    "products": [
+      { "name": "Basic Tees", "value": 28, "color": "#DEE0EF" },
+      { "name": "Custom Short Pants", "value": 12, "color": "#EFDADA" },
+      { "name": "Super Hoodies", "value": 60, "color": "#F6DC7D" }
+    ]
+  },
+  {
+    "duration": "May - Jun 2021",
+    "products": [
+      { "name": "Basic Tees", "value": 33, "color": "#EE8484" },
+      { "name": "Custom Short Pants", "value": 21, "color": "#DDEFE0" },
+      { "name": "Super Hoodies", "value": 46, "color": "#F6DC7D" }
+    ]
+  }
+]

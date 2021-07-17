@@ -1,21 +1,60 @@
+import { useState } from "react";
 import { PieChart, Pie, Cell } from "recharts";
 
-const TopProductsBox = () => {
-  const data = [
-    { name: "Basic Tees", value: 55 },
-    { name: "Custom Short Pants", value: 31 },
-    { name: "Super Hoodies", value: 14 }
-  ];
+import useComponentVisible from "../../../hooks/useComponentVisible.js";
 
-  const COLORS = ["#F6DC7D", "#EE8484", "#98D89E"];
+import PieChartData from "../../../data/pie-chart.json";
+
+const TopProductsBox = () => {
+  const pieChartData = PieChartData;
+  const [currentData, setCurrentData] = useState(pieChartData[0].products);
+  const [currentduration, setDuration] = useState(pieChartData[0].duration);
+
+  const {
+    triggerRef,
+    childRef,
+    isComponentVisible,
+    toggleChild
+  } = useComponentVisible();
 
   return (
     <div className="dashboard-box top-products">
       <div className="top-products-box-head">
         <h3>Top Products</h3>
+
         <div className="right">
-          <p>May - June 2021&nbsp;</p>
-          <div className="chevron-down">&gt;</div>
+          <a
+            className="current-duration"
+            ref={triggerRef}
+            href="/"
+            onClick={e => {
+              e.preventDefault();
+              toggleChild();
+            }}
+          >
+            <p>{currentduration}&nbsp;</p>
+            <p>&nbsp;v</p>
+          </a>
+
+          {isComponentVisible && (
+            <div className="duration-dropdown" ref={childRef}>
+              {pieChartData.map(({ duration, products }) => {
+                return (
+                  <a
+                    href="/"
+                    onClick={e => {
+                      e.preventDefault();
+                      setCurrentData(products);
+                      setDuration(duration);
+                      toggleChild();
+                    }}
+                  >
+                    {duration}
+                  </a>
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
 
@@ -25,33 +64,30 @@ const TopProductsBox = () => {
             <Pie
               dataKey="value"
               isAnimationActive={false}
-              data={data}
+              data={currentData}
               cx="50%"
               cy="50%"
               outerRadius={70}
               fill="#8884d8"
             >
-              {data.map((entry, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={COLORS[index % COLORS.length]}
-                />
+              {currentData.map(({ color }, index) => (
+                <Cell key={`cell-${index}`} fill={color} />
               ))}
             </Pie>
           </PieChart>
         </div>
 
         <div className="pie-stats">
-          {data.map((val, i) => {
+          {currentData.map(({ name, value, color }, i) => {
             return (
-              <div className="stat" key={val.name}>
+              <div className="stat" key={name}>
                 <div
-                  style={{ backgroundColor: COLORS[i] }}
+                  style={{ backgroundColor: color }}
                   className="data-hightlight-color"
                 ></div>
                 <div>
-                  <h5 className="prod-name">{val.name}</h5>
-                  <p className="prod-value">{val.value}%</p>
+                  <h5 className="prod-name">{name}</h5>
+                  <p className="prod-value">{value}%</p>
                 </div>
               </div>
             );
