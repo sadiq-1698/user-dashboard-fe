@@ -2,40 +2,60 @@ import axios from "axios";
 import { API_ENDPOINTS } from "../globals/constants";
 
 export const registerUser = async payload => {
-  const response = await axios.post(API_ENDPOINTS.user.regsister, payload);
-  return response;
+  try {
+    const response = await axios.post(API_ENDPOINTS.user.regsister, payload);
+    return response;
+  } catch (error) {
+    let response = { error: "Some error occured" };
+    return response;
+  }
 };
 
 export const loginUser = async payload => {
-  const response = await axios.post(API_ENDPOINTS.user.login, payload);
-  return response;
+  try {
+    const response = await axios.post(API_ENDPOINTS.user.login, payload);
+    return response;
+  } catch (error) {
+    let response = { error: "Some error occured" };
+    return response;
+  }
 };
 
 export const changeUserPassword = async (payload, accessToken) => {
-  const response = await axios.patch(
-    API_ENDPOINTS.user.changePassword,
-    payload,
-    {
-      headers: {
-        Authorization: `Bearer ${accessToken}`
+  try {
+    const response = await axios.patch(
+      API_ENDPOINTS.user.changePassword,
+      payload,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
       }
-    }
-  );
-  return response;
+    );
+    return response;
+  } catch (error) {
+    let response = { error: "Some error occured" };
+    return response;
+  }
 };
 
 export const updateUserProfile = async (payload, accessToken) => {
-  const response = await axios.patch(
-    API_ENDPOINTS.user.updateProfile,
-    payload,
-    {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        Accept: "application/json"
+  try {
+    const response = await axios.patch(
+      API_ENDPOINTS.user.updateProfile,
+      payload,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          Accept: "application/json"
+        }
       }
-    }
-  );
-  return response;
+    );
+    return response;
+  } catch (error) {
+    let response = { error: "Some error occured" };
+    return response;
+  }
 };
 
 export const getAllUsers = async () => {
@@ -55,7 +75,8 @@ export const registerWithGoogle = async payload => {
     );
     return response;
   } catch (error) {
-    return {};
+    let response = { error: "Some error occured" };
+    return response;
   }
 };
 
@@ -64,6 +85,7 @@ export const loginWithGoogle = async payload => {
     const response = await axios.post(API_ENDPOINTS.user.google.login, payload);
     return response;
   } catch (error) {
-    return {};
+    let response = { error: "Some error occured" };
+    return response;
   }
 };

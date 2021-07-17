@@ -24,12 +24,20 @@ const LoginSection = () => {
   const handleLoginSubmit = async (values, actions) => {
     trimObjectValues(values);
     let response = await loginUser(values);
+    // client error
+    if (response && response.error) {
+      setErrorMsg(response.error);
+      actions.setSubmitting(false);
+      return;
+    }
+    // server error
     const responseData = getResponseData(response);
     if (responseData.statusCode !== 200) {
       setErrorMsg(responseData.message);
       actions.setSubmitting(false);
       return;
     }
+    // success
     logout();
     setUser(responseData.data);
     history.length > 0 ? history.replace("/") : history.push("/");

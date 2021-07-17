@@ -22,12 +22,20 @@ const SocialProfileButtons = ({ register, setUser, logout }) => {
   const handleRegisterWithGoogle = async userObj => {
     setLoading(true);
     const googleRegisterResponse = await registerWithGoogle(userObj);
+    //client error
+    if (googleRegisterResponse && googleRegisterResponse.error) {
+      setErrorMsg(googleRegisterResponse.error);
+      setLoading(false);
+      return;
+    }
+    // server error
     const { statusCode, message } = googleRegisterResponse?.data;
     if (statusCode !== 200) {
       setErrorMsg(message);
       setLoading(false);
       return;
     }
+    // success
     setLoading(false);
     history.push("/login");
   };
@@ -35,12 +43,20 @@ const SocialProfileButtons = ({ register, setUser, logout }) => {
   const handleLoginWithGoogle = async userObj => {
     setLoading(true);
     const googleLoginResponse = await loginWithGoogle(userObj);
+    //client error
+    if (googleLoginResponse && googleLoginResponse.error) {
+      setErrorMsg(googleLoginResponse.error);
+      setLoading(false);
+      return;
+    }
+    // server error
     const { statusCode, data, message } = googleLoginResponse?.data;
     if (statusCode !== 200) {
       setErrorMsg(message);
       setLoading(false);
       return;
     }
+    // success
     logout();
     setUser(data);
     history.length > 0 ? history.replace("/") : history.push("/");

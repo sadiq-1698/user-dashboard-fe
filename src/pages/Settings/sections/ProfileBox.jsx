@@ -33,6 +33,13 @@ const ProfileBox = ({ header, getUser, setUser }) => {
     let formData = new FormData();
     appendValuesToFormData(values, formData);
     const response = await updateUserProfile(formData, userInfo.authToken);
+    // client error
+    if (response && response.error) {
+      setErrMsg(response.error);
+      actions.setSubmitting(false);
+      return;
+    }
+    //server error
     const responseData = getResponseData(response);
     if (responseData.statusCode !== 200) {
       setSuccess(false);
@@ -40,6 +47,7 @@ const ProfileBox = ({ header, getUser, setUser }) => {
       actions.setSubmitting(false);
       return;
     }
+    //success
     setErrMsg(responseData.message);
     setSuccess(true);
     setUser(responseData.data);

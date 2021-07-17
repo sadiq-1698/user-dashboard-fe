@@ -24,6 +24,13 @@ const AccountBox = ({ header, getUser }) => {
   const handleSubmitChangePassword = async (values, actions) => {
     trimObjectValues(values);
     let response = await changeUserPassword(values, userInfo.authToken);
+    // client error
+    if (response && response.error) {
+      setErrMsg(response.error);
+      actions.setSubmitting(false);
+      return;
+    }
+    //server error
     const responseData = getResponseData(response);
     if (responseData.statusCode !== 200) {
       setSuccess(false);
@@ -31,6 +38,7 @@ const AccountBox = ({ header, getUser }) => {
       actions.setSubmitting(false);
       return;
     }
+    //success
     setErrMsg(responseData.message);
     setSuccess(true);
     actions.resetForm();
