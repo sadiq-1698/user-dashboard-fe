@@ -3,12 +3,13 @@
 .user-pages-layout {
   padding: 40px;
   display: flex;
+  min-height: 100vh;
   background-color: $bgGrey;
   position: relative;
+  padding-left: 360px;
 
   .content {
     flex: 1;
-    margin-left: 40px;
     max-width: 100%;
     overflow-x: auto;
   }
@@ -26,13 +27,12 @@
 @media (max-width: $d-vp) {
   .user-pages-layout {
     padding: 20px;
-    padding-left: 50px;
+    padding-left: 90px;
   }
 }
 
 @media (max-width: $b-vp) {
   .user-pages-layout {
-    padding-left: 90px;
     .content {
       margin: 0;
     }

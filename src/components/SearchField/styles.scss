@@ -18,6 +18,10 @@
     font-size: 14px;
     font-family: $fontLato;
     background: transparent;
+
+    @media (max-width: $b-vp) {
+      width: 80%;
+    }
   }
 
   ::-webkit-input-placeholder {

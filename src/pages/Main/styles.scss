@@ -52,7 +52,6 @@
 
   &.activities {
     margin-bottom: 40px;
-    overflow-x: scroll;
   }
 }
 
@@ -151,6 +150,24 @@
 
   .right {
     display: flex;
+
+    .stat {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      font-family: $fontLato;
+      color: $secondary;
+      &:first-child {
+        margin-right: 35px;
+      }
+    }
+
+    .data-hightlight-color {
+      height: 10px;
+      width: 10px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
   }
 
   @media (max-width: $b-vp) {

@@ -48,8 +48,25 @@ const ActivitiesBox = () => {
         </div>
 
         <div className="right">
-          <p>Guest</p>
-          <p>User</p>
+          <div className="stat">
+            <div
+              style={{ backgroundColor: "#E9A0A0" }}
+              className="data-hightlight-color"
+            ></div>
+            <div>
+              <p className="prod-value">Guest</p>
+            </div>
+          </div>
+
+          <div className="stat">
+            <div
+              style={{ backgroundColor: "#9BDD7C" }}
+              className="data-hightlight-color"
+            ></div>
+            <div>
+              <p className="prod-value">User</p>
+            </div>
+          </div>
         </div>
       </div>
 

@@ -66,9 +66,16 @@
 }
 
 @media (max-width: $b-vp) {
-  .topbar-profile-section {
-    .topbar-notify-icon {
-      display: none;
+  .topbar {
+    .topbar-profile-section {
+      .topbar-search {
+        width: 80%;
+        margin-right: 10px;
+      }
+
+      .topbar-notify-icon {
+        display: none;
+      }
     }
   }
 }
