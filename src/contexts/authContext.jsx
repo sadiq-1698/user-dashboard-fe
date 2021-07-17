@@ -1,5 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
+
 import { ACCESS_TOKEN, USER_INFO } from "../globals/constants";
+
+import { helloApp } from "../api/helloApp";
 
 const AuthContext = React.createContext();
 
@@ -41,6 +44,13 @@ export function AuthProvider({ children }) {
     localStorage.removeItem(USER_INFO);
     setIsLoggedIn(false);
   }
+
+  useEffect(() => {
+    const triggerServer = async () => {
+      await helloApp();
+    };
+    triggerServer();
+  }, []);
 
   return (
     <AuthContext.Provider value={{ isLoggedIn, logout, setUser, getUser }}>
