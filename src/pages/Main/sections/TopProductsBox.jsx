@@ -44,7 +44,7 @@ const TopProductsBox = () => {
         <div className="pie-stats">
           {data.map((val, i) => {
             return (
-              <div className="stat">
+              <div className="stat" key={val.name}>
                 <div
                   style={{ backgroundColor: COLORS[i] }}
                   className="data-hightlight-color"

@@ -16,7 +16,8 @@ export const API_ENDPOINTS = {
     regsister: `${API_BASE_URL}/user/register`,
     login: `${API_BASE_URL}/user/login`,
     changePassword: `${API_BASE_URL}/user/changePassword`,
-    updateProfile: `${API_BASE_URL}/user/updateProfile`
+    updateProfile: `${API_BASE_URL}/user/updateProfile`,
+    getAllUsers: `${API_BASE_URL}/users`
   }
 };
 

@@ -37,3 +37,12 @@ export const updateUserProfile = async (payload, accessToken) => {
   );
   return response;
 };
+
+export const getAllUsers = async () => {
+  try {
+    const response = await axios.get(API_ENDPOINTS.user.getAllUsers);
+    return response.data;
+  } catch (e) {
+    return [];
+  }
+};

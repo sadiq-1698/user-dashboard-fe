@@ -1,24 +1,31 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 
 import UserDataTable from "../../components/UserDataTable/UserDataTable";
 import Button from "../../components/Button/Button.jsx";
 import SearchField from "../../components/SearchField/SearchField";
 
-import json_data from "../../data/user-data.json";
 import FilterIcon from "../../static/images/filter.svg";
 
 import { generateButtons } from "./helper";
 import "./styles.scss";
 import useComponentVisible from "../../hooks/useComponentVisible";
+import { getAllUsers } from "../../api/user";
 
 const Users = () => {
+  const [fullData, setFullData] = useState([]);
   const [data, setData] = useState([]);
   const [pageIndex, setPageIndex] = useState(10);
   const [paginationButtons, setPaginationButtons] = useState([]);
   const [searchUser, setSearchUser] = useState("");
   const [filter, setFilter] = useState({ admin: true, user: true });
 
-  const fullData = useMemo(() => json_data, []);
+  useEffect(() => {
+    const getUsers = async () => {
+      const data = await getAllUsers();
+      setFullData(data);
+    };
+    getUsers();
+  }, []);
 
   const handleUserSearch = e => {
     setPageIndex(10);
@@ -42,6 +49,7 @@ const Users = () => {
 
         <TableOptions
           handleSearch={handleUserSearch}
+          setPageIndex={setPageIndex}
           setFilter={setFilter}
           filter={filter}
         />
@@ -67,7 +75,7 @@ const Users = () => {
   );
 };
 
-const TableOptions = ({ handleSearch, setFilter, filter }) => {
+const TableOptions = ({ handleSearch, setPageIndex, setFilter, filter }) => {
   return (
     <div className="table-options-right">
       <SearchField
@@ -76,14 +84,18 @@ const TableOptions = ({ handleSearch, setFilter, filter }) => {
         onChange={handleSearch}
       />
 
-      <UserRoleFilter filter={filter} setFilter={setFilter} />
+      <UserRoleFilter
+        filter={filter}
+        setFilter={setFilter}
+        setPageIndex={setPageIndex}
+      />
 
       <Button>+ Add</Button>
     </div>
   );
 };
 
-const UserRoleFilter = ({ filter, setFilter }) => {
+const UserRoleFilter = ({ filter, setFilter, setPageIndex }) => {
   const {
     triggerRef,
     childRef,
@@ -101,12 +113,16 @@ const UserRoleFilter = ({ filter, setFilter }) => {
         <img src={FilterIcon} alt="filter" width="12px" height="10px" />
         <p>Filter</p>
       </button>
+
       {isComponentVisible && (
         <div className="filter-container" ref={childRef}>
           <label htmlFor="filter-admin">
             <input
               type="checkbox"
-              onChange={e => setFilter({ ...filter, admin: e.target.checked })}
+              onChange={e => {
+                setPageIndex(10);
+                setFilter({ ...filter, admin: e.target.checked });
+              }}
               defaultChecked={filter.admin}
               id="filter-admin"
             />
@@ -116,7 +132,10 @@ const UserRoleFilter = ({ filter, setFilter }) => {
           <label htmlFor="filter-user">
             <input
               type="checkbox"
-              onChange={e => setFilter({ ...filter, user: e.target.checked })}
+              onChange={e => {
+                setPageIndex(10);
+                setFilter({ ...filter, user: e.target.checked });
+              }}
               defaultChecked={filter.user}
               id="filter-user"
             />
