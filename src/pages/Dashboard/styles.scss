@@ -1,33 +1,46 @@
 @import "../../App.scss";
 
 .user-pages-layout {
-  padding: 40px;
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
   background-color: $bgGrey;
-  position: relative;
-  padding-left: 360px;
+  width: 100%;
+
+  .sidebar-wrapper {
+    height: 100%;
+    width: 360px;
+    padding: 40px;
+    padding-right: 0;
+
+    @media (max-width: $d-vp) {
+      padding-left: 0;
+      width: 80px;
+    }
+  }
 
   .content {
-    flex: 1;
+    width: calc(100% - 280px);
+    padding: 40px;
+    padding-left: 20px;
     max-width: 100%;
     overflow-x: auto;
+    overflow-y: auto;
+    flex: 1;
+
+    @media (max-width: $d-vp) {
+      width: calc(100% - 80px);
+      padding: 20px;
+    }
   }
 }
 
 .topbar {
   display: flex;
   justify-content: space-between;
+
   .profile-section {
     display: flex;
     align-items: center;
-  }
-}
-
-@media (max-width: $d-vp) {
-  .user-pages-layout {
-    padding: 20px;
-    padding-left: 90px;
   }
 }
 
