@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, Redirect } from "react-router-dom";
 
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Topbar from "../../components/Topbar/Topbar";
@@ -17,7 +17,10 @@ const Dashboard = () => {
   const routeLocation = useLocation();
 
   const getPageName = () => {
-    let { page } = USER_SCREENS.find(i => i.path === routeLocation.pathname);
+    let { page } = USER_SCREENS.find(
+      i => i.path === routeLocation.pathname
+    ) || { page: "" };
+
     return page;
   };
 
@@ -34,6 +37,7 @@ const Dashboard = () => {
         {getPageName() === "Users" && <Users />}
         {getPageName() === "Settings" && <Settings />}
         {getPageName() === "Schedules" && <Schedules />}
+        {getPageName() === "" && <Redirect exact to="/" />}
       </div>
     </div>
   );

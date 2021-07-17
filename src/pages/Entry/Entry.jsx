@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, Redirect } from "react-router-dom";
 
 import LoginSection from "./sections/LoginSection";
 import RegisterSection from "./sections/RegisterSection";
@@ -13,7 +13,9 @@ const Entry = () => {
   const routeLocation = useLocation();
 
   const getPageName = () => {
-    let { page } = ENTRY_SCREENS.find(i => i.path === routeLocation.pathname);
+    let { page } = ENTRY_SCREENS.find(
+      i => i.path === routeLocation.pathname
+    ) || { page: "" };
     return page;
   };
 
@@ -24,6 +26,7 @@ const Entry = () => {
       <div className="entry-right">
         {getPageName() === "Login" && <LoginSection />}
         {getPageName() === "Register" && <RegisterSection />}
+        {getPageName() === "" && <Redirect exact to="/" />}
       </div>
     </div>
   );
