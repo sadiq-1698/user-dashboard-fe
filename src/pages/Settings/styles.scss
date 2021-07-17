@@ -75,3 +75,11 @@
     }
   }
 }
+
+@media (max-width: $b-vp) {
+  .settings-layout {
+    .settings-box {
+      padding: 20px;
+    }
+  }
+}

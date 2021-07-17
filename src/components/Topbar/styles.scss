@@ -13,22 +13,27 @@
       margin-right: 30px;
     }
 
-    .topbar-notify-icon {
-      margin-right: 20px;
-    }
+    .topbar-profile-right {
+      display: flex;
+      align-items: center;
 
-    .topbar-profile-pic {
-      cursor: pointer;
-      border: none;
-      border: 3px solid transparent;
-      outline: none;
-      background: transparent;
-      border-radius: 50%;
-      font-family: $fontMontserrat;
-      transition: 0.1s all ease-in-out;
+      .topbar-notify-icon {
+        margin-right: 20px;
+      }
 
-      &:hover {
-        border: 3px solid $lightGrey;
+      .topbar-profile-pic {
+        cursor: pointer;
+        border: none;
+        border: 3px solid transparent;
+        outline: none;
+        background: transparent;
+        border-radius: 50%;
+        font-family: $fontMontserrat;
+        transition: 0.1s all ease-in-out;
+
+        &:hover {
+          border: 3px solid $lightGrey;
+        }
       }
     }
   }
@@ -51,7 +56,19 @@
         display: flex;
         align-items: center;
         justify-content: flex-end;
+
+        .topbar-notify-icon {
+          margin-right: 10px;
+        }
       }
+    }
+  }
+}
+
+@media (max-width: $b-vp) {
+  .topbar-profile-section {
+    .topbar-notify-icon {
+      display: none;
     }
   }
 }

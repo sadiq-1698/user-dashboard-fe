@@ -3,6 +3,12 @@ import TransactionsIcon from "../static/images/transactions.svg";
 import LikesIcon from "../static/images/likes.svg";
 import UsersIcon from "../static/images/users.svg";
 
+import TransactionWhite from "../static/images/sidebar-transaction.svg";
+import ScheduleWhite from "../static/images/sidebar-schedule.svg";
+import SettingsWhite from "../static/images/sidebar-settings.svg";
+import DashboardWhite from "../static/images/sidebar-dashboard.svg";
+import UserWhite from "../static/images/sidebar-user.svg";
+
 export const API_BASE_URL = "http://localhost:3001";
 
 export const API_ENDPOINTS = {
@@ -20,23 +26,28 @@ export const USER_INFO = "dash-user-info";
 export const USER_SCREENS = [
   {
     page: "Dashboard",
-    path: "/"
+    path: "/",
+    icon: DashboardWhite
   },
   {
     page: "Transactions",
-    path: "/transactions"
+    path: "/transactions",
+    icon: TransactionWhite
   },
   {
     page: "Schedules",
-    path: "/schedules"
+    path: "/schedules",
+    icon: ScheduleWhite
   },
   {
     page: "Users",
-    path: "/users"
+    path: "/users",
+    icon: UserWhite
   },
   {
     page: "Settings",
-    path: "/settings"
+    path: "/settings",
+    icon: SettingsWhite
   }
 ];
 

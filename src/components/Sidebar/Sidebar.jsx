@@ -7,19 +7,30 @@ const Sidebar = ({ screens, currentScreen }) => {
         <div className="top">
           <h1 className="app-name">Dash.</h1>
 
-          {screens.map(({ page, path }, i) => {
-            return (
-              <a key={page} href={path}>
-                <p
-                  className={`screen-name ${
-                    page === currentScreen ? "selected" : ""
-                  }`}
+          <div>
+            {screens.map(({ page, path, icon }, i) => {
+              let selected = page === currentScreen;
+              return (
+                <a
+                  key={page}
+                  href={path}
+                  className={`screen-link ${selected ? "selected" : ""}`}
                 >
-                  {page}
-                </p>
-              </a>
-            );
-          })}
+                  <img
+                    src={icon}
+                    alt={page}
+                    width="18px"
+                    height="18px"
+                    className="screen-icon"
+                  />
+
+                  <p className={`screen-name ${selected ? "selected" : ""}`}>
+                    {page}
+                  </p>
+                </a>
+              );
+            })}
+          </div>
         </div>
 
         <div className="bottom">

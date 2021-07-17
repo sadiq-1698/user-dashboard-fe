@@ -92,6 +92,7 @@
 
     .entry-left {
       padding: 10px;
+      padding-left: 20px;
       justify-content: flex-start;
       align-items: center;
       font-size: 24px;
@@ -109,7 +110,7 @@
 @media (max-width: $b-vp) {
   .entry-page-layout {
     .entry-right {
-      padding: 10px;
+      padding: 20px;
       width: 100%;
     }
   }

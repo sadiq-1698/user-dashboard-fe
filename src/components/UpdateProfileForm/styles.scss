@@ -61,3 +61,16 @@
     }
   }
 }
+
+@media (max-width: $b-vp) {
+  .profile-box-layout {
+    .right-prof {
+      .name-fields {
+        flex-direction: column;
+        .fname-field {
+          margin: 0;
+        }
+      }
+    }
+  }
+}

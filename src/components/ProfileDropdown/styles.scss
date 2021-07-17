@@ -24,6 +24,12 @@
   font-size: 14px;
   display: flex;
   align-items: center;
+
+  &.noti,
+  &.help,
+  &.contact {
+    display: none;
+  }
 }
 
 .dropdown-item.logout {
@@ -37,5 +43,22 @@
 @media (max-width: $e-vp) {
   .dropdown-container {
     top: 80px;
+  }
+}
+
+@media (max-width: $d-vp) {
+  .dropdown-item {
+    &.help,
+    &.contact {
+      display: block;
+    }
+  }
+}
+
+@media (max-width: $b-vp) {
+  .dropdown-item {
+    &.noti {
+      display: block;
+    }
   }
 }

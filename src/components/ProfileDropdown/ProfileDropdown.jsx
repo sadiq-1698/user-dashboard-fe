@@ -10,12 +10,15 @@ const ProfileDropdown = () => {
   return (
     <div className="dropdown-container">
       <DropdownItem text="My Profile" url="/settings" />
+      <DropdownItem text="Notifications" url="/" menu="noti" />
+      <DropdownItem text="Help" url="/" menu="help" />
+      <DropdownItem text="Contact" url="/" menu="contact" />
       <DropdownItem text="Logout" url="#" logout={logout} />
     </div>
   );
 };
 
-const DropdownItem = ({ text, url, logout }) => {
+const DropdownItem = ({ text, url, logout, menu }) => {
   const handleLogout = e => {
     e.preventDefault();
     logout();
@@ -34,7 +37,7 @@ const DropdownItem = ({ text, url, logout }) => {
   }
   return (
     <a href={url}>
-      <div className="dropdown-item">
+      <div className={`dropdown-item ${menu}`}>
         <p>{text}</p>
       </div>
     </a>
@@ -44,11 +47,13 @@ const DropdownItem = ({ text, url, logout }) => {
 DropdownItem.propTypes = {
   text: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
-  logout: PropTypes.func
+  logout: PropTypes.func,
+  menu: PropTypes.string
 };
 
 DropdownItem.defaultProps = {
-  logout: null
+  logout: null,
+  menu: ""
 };
 
 export default ProfileDropdown;
