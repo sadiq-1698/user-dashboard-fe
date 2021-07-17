@@ -36,7 +36,7 @@ const RegisterSection = () => {
 
       <p className="sign-in-text">Create an account to use dashboard</p>
 
-      <SocialProfileButtons />
+      <SocialProfileButtons register />
 
       <Formik
         initialValues={RegisterationInitialValues}

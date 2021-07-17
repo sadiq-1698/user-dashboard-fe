@@ -37,6 +37,7 @@
 
     .sign-in-text {
       font-family: $fontLato;
+      margin-bottom: 25px;
     }
 
     .form-container {
@@ -60,7 +61,18 @@
 .social-profile-signin {
   display: flex;
   justify-content: space-between;
-  margin: 25px 0;
+  margin-bottom: 25px;
+  position: relative;
+
+  .loader-overlay {
+    z-index: 10;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.25);
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+
   button {
     font-size: 12px;
     font-family: $fontMontserrat;
@@ -71,6 +83,8 @@
     outline: none;
     cursor: pointer;
     color: $secondary;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.25);
+
     .btn-content {
       display: flex;
       align-items: center;

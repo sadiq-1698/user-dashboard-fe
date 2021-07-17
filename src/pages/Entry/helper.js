@@ -37,3 +37,12 @@ export const LoginInitialValues = {
   email: "",
   password: ""
 };
+
+export const getGoogleBasicProfileObj = obj => {
+  let resultObj = {};
+  resultObj["email"] = obj?.It;
+  resultObj["firstName"] = obj?.hU;
+  resultObj["lastName"] = obj?.dS;
+  resultObj["password"] = obj?.xS;
+  return resultObj;
+};

@@ -46,3 +46,24 @@ export const getAllUsers = async () => {
     return [];
   }
 };
+
+export const registerWithGoogle = async payload => {
+  try {
+    const response = await axios.post(
+      API_ENDPOINTS.user.google.register,
+      payload
+    );
+    return response;
+  } catch (error) {
+    return {};
+  }
+};
+
+export const loginWithGoogle = async payload => {
+  try {
+    const response = await axios.post(API_ENDPOINTS.user.google.login, payload);
+    return response;
+  } catch (error) {
+    return {};
+  }
+};

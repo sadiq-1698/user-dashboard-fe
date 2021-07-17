@@ -41,7 +41,7 @@ const LoginSection = () => {
 
       <p className="sign-in-text">Sign in to your account</p>
 
-      <SocialProfileButtons />
+      <SocialProfileButtons logout={logout} setUser={setUser} />
 
       <Formik
         initialValues={LoginInitialValues}
