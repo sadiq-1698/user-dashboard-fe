@@ -1,0 +1,26 @@
+@import "../../App.scss";
+
+.not-found-wrapper {
+  min-height: 100vh;
+  background-color: $bgGrey;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .not-found-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    max-width: 300px;
+
+    h1 {
+      text-align: start;
+      color: $danger;
+    }
+
+    button {
+      margin-top: 10px;
+    }
+  }
+}

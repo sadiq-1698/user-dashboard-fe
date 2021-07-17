@@ -37,7 +37,7 @@ const Dashboard = () => {
         {getPageName() === "Users" && <Users />}
         {getPageName() === "Settings" && <Settings />}
         {getPageName() === "Schedules" && <Schedules />}
-        {getPageName() === "" && <Redirect exact to="/" />}
+        {getPageName() === "" && <Redirect exact to="/404" />}
       </div>
     </div>
   );

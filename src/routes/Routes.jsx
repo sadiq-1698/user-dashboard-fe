@@ -6,6 +6,7 @@ import PrivateRoute from "./PrivateRoute";
 import Entry from "../pages/Entry/Entry";
 
 import { useAuth } from "../contexts/authContext";
+import NotFound from "../pages/NotFound/NotFound";
 
 const Routes = () => {
   const { isLoggedIn } = useAuth();
@@ -25,6 +26,10 @@ const Routes = () => {
       <Switch>
         <Route path={entryRoutes} exact>
           <Entry />
+        </Route>
+
+        <Route path="/404" exact>
+          <NotFound />
         </Route>
 
         <PrivateRoute
