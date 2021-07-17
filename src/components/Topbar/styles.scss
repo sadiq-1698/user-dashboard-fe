@@ -33,3 +33,25 @@
     }
   }
 }
+
+@media (max-width: $e-vp) {
+  .topbar {
+    flex-direction: column;
+
+    .topbar-screen-name {
+      margin-bottom: 10px;
+    }
+
+    .topbar-profile-section {
+      display: flex;
+      justify-content: space-between;
+
+      .topbar-profile-right {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
+    }
+  }
+}

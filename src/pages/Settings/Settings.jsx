@@ -68,7 +68,7 @@ const ProfileBox = ({ header, getUser, setUser }) => {
   };
 
   return (
-    <div className="settings-box">
+    <div className="settings-box profile">
       <h4>{header}</h4>
 
       <Formik
@@ -109,7 +109,7 @@ const AccountBox = ({ header, getUser }) => {
   };
 
   return (
-    <div className="settings-box">
+    <div className="settings-box account">
       <h4>{header}</h4>
 
       <Formik
@@ -135,7 +135,7 @@ const SecurityBox = ({ header }) => {
   };
 
   return (
-    <div className="settings-box">
+    <div className="settings-box security">
       <h4>{header}</h4>
       <div className="two-step-verify" onClick={handleOnClick}>
         <p>2-Step Verification</p>
@@ -149,7 +149,7 @@ const SecurityBox = ({ header }) => {
 
 const DangerBox = ({ header }) => {
   return (
-    <div className="settings-box">
+    <div className="settings-box danger">
       <h4 className="danger">{header}</h4>
       <Button danger wide>
         Delete My Account

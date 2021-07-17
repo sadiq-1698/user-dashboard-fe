@@ -65,3 +65,13 @@
     }
   }
 }
+
+@media (max-width: $e-vp) {
+  .settings-layout {
+    flex-direction: column;
+
+    .left {
+      margin-right: 0;
+    }
+  }
+}

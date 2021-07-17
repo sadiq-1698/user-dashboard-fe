@@ -33,3 +33,31 @@
     border-radius: 5px;
   }
 }
+
+@media (max-width: $f-vp) {
+  .profile-box-layout {
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+
+    .left-prof {
+      margin: 0;
+      margin-bottom: 20px;
+    }
+  }
+}
+
+@media (max-width: $e-vp) {
+  .profile-box-layout {
+    .right-prof {
+      width: 100%;
+
+      .name-fields {
+        .fname-field,
+        .field-wrapper {
+          flex: 1;
+        }
+      }
+    }
+  }
+}

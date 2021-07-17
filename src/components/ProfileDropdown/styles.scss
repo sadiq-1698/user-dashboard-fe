@@ -33,3 +33,9 @@
 .dropdown-item:hover {
   background-color: $bgGrey;
 }
+
+@media (max-width: $e-vp) {
+  .dropdown-container {
+    top: 80px;
+  }
+}

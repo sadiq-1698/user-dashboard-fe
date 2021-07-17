@@ -35,17 +35,24 @@ const Topbar = ({ screen }) => {
           <SearchField text="Search.." />
         </div>
 
-        <div className="topbar-notify-icon">
-          <img src={NotifyIcon} alt="notification" width="18px" height="20px" />
-        </div>
+        <div className="topbar-profile-right">
+          <div className="topbar-notify-icon">
+            <img
+              src={NotifyIcon}
+              alt="notification"
+              width="18px"
+              height="20px"
+            />
+          </div>
 
-        <button
-          className="topbar-profile-pic"
-          ref={triggerRef}
-          onClick={toggleChild}
-        >
-          <CircleProfileAvatar img={getProfileImage(getUser)} width="30px" />
-        </button>
+          <button
+            className="topbar-profile-pic"
+            ref={triggerRef}
+            onClick={toggleChild}
+          >
+            <CircleProfileAvatar img={getProfileImage(getUser)} width="30px" />
+          </button>
+        </div>
 
         <div ref={childRef}>{isComponentVisible && <ProfileDropdown />}</div>
       </div>
