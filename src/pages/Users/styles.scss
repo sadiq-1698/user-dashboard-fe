@@ -76,6 +76,10 @@
 
   .table-container {
     margin-bottom: 10px;
+
+    .no-records {
+      text-align: center;
+    }
   }
 
   .pagination-controls {

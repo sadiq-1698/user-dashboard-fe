@@ -56,6 +56,8 @@ const Users = () => {
       </div>
 
       <div className="table-container">
+        {/* {data.length === 0 && <h3 className="no-records">No records found.</h3>}
+        {data.length !== 0 && ( */}
         <UserDataTable
           userData={fullData}
           pageIndex={pageIndex}
@@ -63,6 +65,7 @@ const Users = () => {
           roleFilter={filter}
           setData={setData}
         />
+        {/* )} */}
       </div>
 
       <PaginationControls

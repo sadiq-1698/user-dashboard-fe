@@ -17,7 +17,6 @@ import { LoginInitialValues, LoginFormValidation } from "../helper";
 import "../styles.scss";
 
 const LoginSection = () => {
-  console.log("Login page called");
   const { setUser, logout } = useAuth();
   const history = useHistory();
   const [errorMsg, setErrorMsg] = useState("");

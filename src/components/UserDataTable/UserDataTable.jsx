@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 import CircleProfileAvatar from "../CircleProfileAvatar/CircleProfileAvatar";
@@ -12,6 +12,8 @@ const UserDataTable = ({
   roleFilter,
   setData
 }) => {
+  const [currentData, setCurrentData] = useState(userData);
+
   const { admin, user } = roleFilter;
 
   useEffect(() => {
@@ -19,10 +21,14 @@ const UserDataTable = ({
       .filter(element => filterFromArray(element, admin, user))
       .filter(element => searchInArray(element, searchUser));
     setData([...updatedData]);
+    setCurrentData([...updatedData]);
   }, [searchUser, admin, user, userData, setData]);
 
   return (
     <div>
+      {currentData.length === 0 && (
+        <h3 className="no-records">No records found</h3>
+      )}
       {userData
         .filter(element => filterFromArray(element, admin, user))
         .filter(element => searchInArray(element, searchUser))

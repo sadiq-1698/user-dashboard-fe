@@ -15,7 +15,6 @@ import { RegisterFormValidation, RegisterationInitialValues } from "../helper";
 import "../styles.scss";
 
 const RegisterSection = () => {
-  console.log("Register page called");
   const [errorMsg, setErrorMsg] = useState("");
   const history = useHistory();
 
