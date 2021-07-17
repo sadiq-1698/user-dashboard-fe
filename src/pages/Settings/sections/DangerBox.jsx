@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import Button from "../../../components/Button/Button";
 
 import "../styles.scss";
@@ -11,6 +12,10 @@ const DangerBox = ({ header }) => {
       </Button>
     </div>
   );
+};
+
+DangerBox.propTypes = {
+  header: PropTypes.string.isRequired
 };
 
 export default DangerBox;

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import { Formik, Form } from "formik";
 
 import { changeUserPassword } from "../../../api/user";
@@ -54,6 +55,11 @@ const AccountBox = ({ header, getUser }) => {
       {errMsg.length > 0 && <FieldError success={success}>{errMsg}</FieldError>}
     </div>
   );
+};
+
+AccountBox.propTypes = {
+  header: PropTypes.string.isRequired,
+  getUser: PropTypes.func.isRequired
 };
 
 export default AccountBox;

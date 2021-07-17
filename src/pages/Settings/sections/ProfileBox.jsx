@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
 import { Formik, Form } from "formik";
 
@@ -63,6 +64,12 @@ const ProfileBox = ({ header, getUser, setUser }) => {
       {errMsg.length > 0 && <FieldError success={success}>{errMsg}</FieldError>}
     </div>
   );
+};
+
+ProfileBox.propTypes = {
+  header: PropTypes.string.isRequired,
+  getUser: PropTypes.func.isRequired,
+  setUser: PropTypes.func.isRequired
 };
 
 export default ProfileBox;
