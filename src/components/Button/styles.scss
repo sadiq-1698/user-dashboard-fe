@@ -18,6 +18,7 @@
   cursor: pointer;
   font-weight: bold;
   font-family: $fontMontserrat;
+  transition: 0.1s all ease-in-out;
 
   &.wide {
     width: 100%;
@@ -34,16 +35,9 @@
 
     &.loading {
       color: transparent;
-      // rgb equivalent for primary color
-      background-color: rgba(13, 95, 154, 0.7);
+      background-color: $primary;
       pointer-events: none;
     }
-  }
-
-  &.danger {
-    background-color: transparent;
-    border: 1px solid $danger;
-    color: $danger;
   }
 
   &.loading::after {
@@ -60,5 +54,22 @@
     border-top-color: $white;
     border-radius: 50%;
     animation: button-loading-spinner 1s ease infinite;
+  }
+
+  &.danger {
+    background-color: transparent;
+    border: 1px solid $danger;
+    color: $danger;
+
+    &:hover {
+      background-color: $danger;
+      color: $white;
+    }
+
+    &.loading {
+      color: transparent;
+      background-color: $danger;
+      pointer-events: none;
+    }
   }
 }

@@ -8,7 +8,7 @@ import DangerBox from "./sections/DangerBox";
 import "./styles.scss";
 
 const Settings = () => {
-  const { getUser, setUser } = useAuth();
+  const { getUser, setUser, logout } = useAuth();
 
   return (
     <div className="settings-layout">
@@ -18,7 +18,7 @@ const Settings = () => {
       <div className="right">
         <AccountBox header="Account" getUser={getUser} />
         <SecurityBox header="Security" />
-        <DangerBox header="Danger Zone" />
+        <DangerBox header="Danger Zone" logout={logout} getUser={getUser} />
       </div>
     </div>
   );

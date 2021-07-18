@@ -58,6 +58,21 @@ export const updateUserProfile = async (payload, accessToken) => {
   }
 };
 
+export const deleteMyAccount = async accessToken => {
+  try {
+    const response = await axios.delete(API_ENDPOINTS.user.delete, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        Accept: "application/json"
+      }
+    });
+    return response;
+  } catch (error) {
+    let response = { error: "Some error occured" };
+    return response;
+  }
+};
+
 export const getAllUsers = async () => {
   try {
     const response = await axios.get(API_ENDPOINTS.user.getAllUsers);

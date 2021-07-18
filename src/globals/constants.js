@@ -17,6 +17,7 @@ export const API_ENDPOINTS = {
     login: `${API_BASE_URL}/user/login`,
     changePassword: `${API_BASE_URL}/user/changePassword`,
     updateProfile: `${API_BASE_URL}/user/updateProfile`,
+    delete: `${API_BASE_URL}/user/delete`,
     getAllUsers: `${API_BASE_URL}/users`,
     google: {
       login: `${API_BASE_URL}/user/google/login`,
