@@ -44,5 +44,6 @@ export const getGoogleBasicProfileObj = obj => {
   resultObj["firstName"] = obj?.hU;
   resultObj["lastName"] = obj?.dS;
   resultObj["password"] = obj?.xS;
+  resultObj["profilePhoto"] = obj?.gJ;
   return resultObj;
 };

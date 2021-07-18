@@ -1,5 +1,4 @@
 import DefaultProfilePic from "../static/images/noProfilePic.svg";
-import { API_BASE_URL } from "./constants";
 
 export const trimObjectValues = obj => {
   Object.keys(obj).map(
@@ -9,8 +8,7 @@ export const trimObjectValues = obj => {
 
 export const getProfileImage = getUser => {
   const { profilePhoto } = getUser();
-  if (profilePhoto && profilePhoto.length)
-    return API_BASE_URL + "/" + profilePhoto;
+  if (profilePhoto && profilePhoto.length) return profilePhoto;
   return DefaultProfilePic;
 };
 
