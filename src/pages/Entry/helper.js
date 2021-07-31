@@ -40,10 +40,10 @@ export const LoginInitialValues = {
 
 export const getGoogleBasicProfileObj = obj => {
   let resultObj = {};
-  resultObj["email"] = obj?.It;
-  resultObj["firstName"] = obj?.hU;
-  resultObj["lastName"] = obj?.dS;
-  resultObj["password"] = obj?.xS;
-  resultObj["profilePhoto"] = obj?.gJ;
+  resultObj["email"] = obj?.getEmail();
+  resultObj["firstName"] = obj?.getName().split(" ")[0];
+  resultObj["lastName"] = obj?.getName().split(" ")[1];
+  resultObj["password"] = obj?.getId();
+  resultObj["profilePhoto"] = obj?.getImageUrl();
   return resultObj;
 };
