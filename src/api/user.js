@@ -86,11 +86,17 @@ export const registerWithGoogle = async payload => {
   try {
     const response = await axios.post(
       API_ENDPOINTS.user.google.register,
-      payload
+      payload,
+      {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          mode: "no-cors"
+        }
+      }
     );
     return response;
   } catch (error) {
-    let response = { error: "Some error occured" };
+    let response = { error: "Some error occured => " + error };
     return response;
   }
 };
